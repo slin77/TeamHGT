@@ -10,27 +10,23 @@ import android.widget.Button;
 import android.widget.TextView;
 
 
-
 public class Welcome extends ActionBarActivity {
+    TextView helloWord;
+    Button welcomeBtn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
-        Thread logoTimer = new Thread() {
-            public void run() {
-                try {
-                    sleep(3000);
-                    Intent i = new Intent(Welcome.this, LoginActivity.class);
-                    startActivityForResult(i, 0);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                finally {
-                    finish();
-                }
-            }
-        };
-        logoTimer.start();
+        welcomeBtn = (Button)findViewById(R.id.welcomeBtn);
+//        helloWord = (TextView)findViewById(R.id.helloword);
+        welcomeBtn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent i = new Intent(Welcome.this, LoginActivity.class);
+                i.putExtra("Mess1",welcomeBtn.getText().toString());
+//                startActivity(i);
+                startActivityForResult(i, 0);
+        }
+        });
 
     }
 
@@ -39,7 +35,7 @@ public class Welcome extends ActionBarActivity {
         try {
             String result = data.getStringExtra("resultName");
             if (!result.isEmpty()) {
-               // welcomeBtn.setText(result);
+                welcomeBtn.setText(result);
             }
             super.onActivityResult(requestCode, resultCode, data);
         } catch (NullPointerException e) {
@@ -57,6 +53,7 @@ public class Welcome extends ActionBarActivity {
     @Override
     protected void onStop() {
         super.onStop();
+        welcomeBtn.setText("Welcome Back");
     }
 
     @Override
