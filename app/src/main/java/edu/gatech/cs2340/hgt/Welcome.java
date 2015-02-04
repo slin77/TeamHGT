@@ -12,8 +12,6 @@ import android.widget.TextView;
 
 
 public class Welcome extends ActionBarActivity {
-    TextView helloWord;
-    Button welcomeBtn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
