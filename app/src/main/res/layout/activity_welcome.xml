@@ -7,15 +7,4 @@
     >
 
 
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="welcome to our app"
-        android:id="@+id/welcomeBtn"
-        android:layout_marginTop="117dp"
-        android:layout_below="@+id/textView"
-        android:layout_centerHorizontal="true"
-        android:theme="@android:style/Animation.Activity" />
-
 </RelativeLayout>
