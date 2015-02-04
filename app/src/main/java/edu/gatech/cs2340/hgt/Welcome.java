@@ -40,7 +40,6 @@ public class Welcome extends ActionBarActivity {
         try {
             String result = data.getStringExtra("resultName");
             if (!result.isEmpty()) {
-                welcomeBtn.setText(result);
             }
             super.onActivityResult(requestCode, resultCode, data);
         } catch (NullPointerException e) {
@@ -58,7 +57,6 @@ public class Welcome extends ActionBarActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        welcomeBtn.setText("Welcome Back");
     }
 
     @Override
