@@ -18,7 +18,7 @@ public class Welcome extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
         welcomeBtn = (Button)findViewById(R.id.welcomeBtn);
-//        helloWord = (TextView)findViewById(R.id.helloword);
+//        helloWord = (TextView)findViewById(R.id.helloword );
         welcomeBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent i = new Intent(Welcome.this, LoginActivity.class);
