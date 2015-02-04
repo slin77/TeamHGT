@@ -32,9 +32,8 @@ public class LoginActivity extends ActionBarActivity {
             public void onClick(View v) {
                 String name = nameField.getText().toString();
                 String password = passwordField.getText().toString();
-                Intent i = new Intent();
-                i.putExtra("resultName", name);
-                setResult(0, i);
+                Intent i = new Intent(LoginActivity.this, Welcome.class);
+                startActivity(i);
                 finish();
             }
         });
