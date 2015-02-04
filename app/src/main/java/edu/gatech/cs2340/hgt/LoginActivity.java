@@ -25,8 +25,8 @@ public class LoginActivity extends ActionBarActivity {
         nameField = (EditText)findViewById(R.id.name);
         nameField.setText(getIntent().getStringExtra("Mess1"));
         passwordField = (EditText)findViewById((R.id.password));
-//        String name = nameField.getText().toString();
-//        String password = nameField.getText().toString();
+        String name = nameField.getText().toString();
+        String password = nameField.getText().toString();
         LoginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
