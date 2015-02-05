@@ -23,12 +23,18 @@ public class Welcome extends ActionBarActivity {
                     sleep(3000);
                     Intent i = new Intent(Welcome.this, LoginActivity.class);
                     startActivityForResult(i, 0);
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            findViewById(R.id.progressBar).setVisibility(View.INVISIBLE);
+                        }
+                    });
                 } catch (InterruptedException e) {
                     e.printStackTrace();
-                }
-                finally {
+                } finally {
                     finish();
                 }
+
             }
         };
         logoTimer.start();
@@ -40,7 +46,7 @@ public class Welcome extends ActionBarActivity {
         try {
             String result = data.getStringExtra("resultName");
             if (!result.isEmpty()) {
-                welcomeBtn.setText(result);
+                //welcomeBtn.setText(result);
             }
             super.onActivityResult(requestCode, resultCode, data);
         } catch (NullPointerException e) {
@@ -48,6 +54,13 @@ public class Welcome extends ActionBarActivity {
         }
 
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -58,7 +71,7 @@ public class Welcome extends ActionBarActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        welcomeBtn.setText("Welcome Back");
+//        welcomeBtn.setText("Welcome Back");
     }
 
     @Override
