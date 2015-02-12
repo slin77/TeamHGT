@@ -7,4 +7,7 @@
     <string name="title_activity_login">LoginActivity</string>
     <string name="loginBtn">Login</string>
     <string name="signupBtn">Signup</string>
+    <string name="title_activity_select">SelectActivity</string>
+    <string name="title_activity_sign_up">SignUpActivity</string>
+
 </resources>

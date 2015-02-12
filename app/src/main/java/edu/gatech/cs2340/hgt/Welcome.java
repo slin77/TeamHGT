@@ -1,5 +1,6 @@
 package edu.gatech.cs2340.hgt;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -11,17 +12,17 @@ import android.widget.TextView;
 
 
 public class Welcome extends ActionBarActivity {
-    TextView helloWord;
-    Button welcomeBtn;
+   static Context APP_CONTEXT;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        APP_CONTEXT = getApplicationContext();//this is the context of the whole application
         setContentView(R.layout.activity_welcome);
         Thread logoTimer = new Thread() {
             public void run() {
                 try {
                     sleep(3000);
-                    Intent i = new Intent(Welcome.this, LoginActivity.class);
+                    Intent i = new Intent(Welcome.this, SelectActivity.class);
                     startActivityForResult(i, 0);
                     runOnUiThread(new Runnable() {
                         @Override

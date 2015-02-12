@@ -28,6 +28,7 @@ public class LoginActivity extends ActionBarActivity {
     ProgressBar loginBar;
     ProgressDialog loginDia;
     RadioButton returnWelcome;
+    UserService loginChecker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,13 +47,13 @@ public class LoginActivity extends ActionBarActivity {
 
         returnWelcome.setVisibility(View.INVISIBLE);
 
-        final LoginChecker loginChecker = new LoginChecker();
+        loginChecker = new UserService(this.getApplicationContext());
 
 
         returnWelcome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(LoginActivity.this, Welcome.class);
+                Intent i = new Intent(LoginActivity.this, SelectActivity.class);
                 startActivity(i);
                 finish();
             }
@@ -69,7 +70,17 @@ public class LoginActivity extends ActionBarActivity {
 
                 } else {
                     loginStatus.setText("login Failed, please check Again");
+                    return;
                 }
+            }
+        });
+
+        SignupBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(LoginActivity.this, SignUpActivity.class);
+                startActivity(i);
+                finish();
             }
         });
 
@@ -122,7 +133,13 @@ public class LoginActivity extends ActionBarActivity {
     }
     private void showPB(){
         if (!loginBar.isActivated()) {
-            loginBar.setVisibility(View.VISIBLE);
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    loginBar.setVisibility(View.VISIBLE);
+                }
+            });
+
         }
     }
     private void stopTimer() {
@@ -131,7 +148,7 @@ public class LoginActivity extends ActionBarActivity {
             timer.cancel();
             timerTask = null;
             timer = null;
-            //hidePB();
+            hidePB();;
         }
     }
 
