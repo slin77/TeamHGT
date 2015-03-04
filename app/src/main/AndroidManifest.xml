@@ -28,6 +28,10 @@
             android:name=".SignUpActivity"
             android:label="@string/title_activity_sign_up" >
         </activity>
+        <activity
+            android:name=".FriendsActivity"
+            android:label="@string/title_activity_friends" >
+        </activity>
     </application>
 
 </manifest>

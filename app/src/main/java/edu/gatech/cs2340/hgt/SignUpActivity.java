@@ -20,6 +20,12 @@ public class SignUpActivity extends ActionBarActivity {
     private TextView signUpStatus;
     private Button submitBtn;
     private UserService signUpchecker;
+    private Button cancelBtn;
+
+    /**
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,9 +39,21 @@ public class SignUpActivity extends ActionBarActivity {
         submitBtn = (Button)findViewById(R.id.signup_submit);
         submitBtn.setOnClickListener(new SubmitListener());
         signUpchecker = new UserService(this.getApplicationContext());
+        cancelBtn = (Button)findViewById(R.id.signup_cancel);
+        cancelBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(SignUpActivity.this, SelectActivity.class);
+                startActivity(i);
+                finish();
+            }
+        });
 
     }
 
+    /**
+     *
+     */
     private class SubmitListener implements View.OnClickListener {
         @Override
         public void onClick(View v) {
@@ -93,13 +111,18 @@ public class SignUpActivity extends ActionBarActivity {
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_sign_up, menu);
-        return true;
-    }
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        // Inflate the menu; this adds items to the action bar if it is present.
+//        getMenuInflater().inflate(R.menu.menu_sign_up, menu);
+//        return true;
+//    }
 
+    /**
+     *
+     * @param item
+     * @return
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will

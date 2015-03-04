@@ -10,7 +10,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-
+/**
+ *
+ */
 public class Welcome extends ActionBarActivity {
    static Context APP_CONTEXT;
     @Override
@@ -42,6 +44,12 @@ public class Welcome extends ActionBarActivity {
 
     }
 
+    /**
+     *
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         try {
@@ -56,12 +64,20 @@ public class Welcome extends ActionBarActivity {
 
     }
 
+    /**
+     *
+     */
     @Override
     protected void onResume() {
         super.onResume();
 
     }
 
+    /**
+     *
+     * @param menu
+     * @return
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -69,12 +85,20 @@ public class Welcome extends ActionBarActivity {
         return true;
     }
 
+    /**
+     *
+     */
     @Override
     protected void onStop() {
         super.onStop();
 //        welcomeBtn.setText("Welcome Back");
     }
 
+    /**
+     *
+     * @param item
+     * @return
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will

@@ -2,6 +2,7 @@ package edu.gatech.cs2340.hgt;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Looper;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -30,6 +31,10 @@ public class LoginActivity extends ActionBarActivity {
     RadioButton returnWelcome;
     UserService loginChecker;
 
+    /**
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -67,6 +72,7 @@ public class LoginActivity extends ActionBarActivity {
                 if (loginChecker.validate(username, password)) {
                     startTimer();
                     returnWelcome.setVisibility(View.VISIBLE);
+                    doLogin(username);
 
                 } else {
                     loginStatus.setText("login Failed, please check Again");
@@ -89,7 +95,26 @@ public class LoginActivity extends ActionBarActivity {
         public Timer timer = null;
         public  TimerTask timerTask = null;
 
+    /**
+     *
+     * @param username
+     */
+    private void doLogin(String username) {
+        UserDB db = new UserDB(getApplicationContext());
 
+        db.insertUser("fakename1","fakerUser1", "123456789", "email" );
+        db.insertUser("fakename2","fakerUser2", "123456789", "email" );
+        db.insertUser("fakename3","fakerUser3", "123456789", "email" );
+        db.insertUser("fakename4","fakerUser4", "123456789", "email" );
+
+        Intent i = new Intent(LoginActivity.this, FriendsActivity.class);
+        SharedPreferences sp = getApplicationContext().getSharedPreferences("userSession", 0);
+        SharedPreferences.Editor ed = sp.edit();
+        ed.putString("curUsername", username);
+        ed.commit();
+        startActivity(i);
+        finish();
+    }
     @Override
     protected void onResume() {
         super.onResume();
@@ -152,7 +177,11 @@ public class LoginActivity extends ActionBarActivity {
         }
     }
 
-
+    /**
+     *
+     * @param menu
+     * @return
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -160,6 +189,11 @@ public class LoginActivity extends ActionBarActivity {
         return true;
     }
 
+    /**
+     *
+     * @param item
+     * @return
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will

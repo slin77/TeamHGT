@@ -12,6 +12,11 @@ import android.widget.Button;
 public class SelectActivity extends ActionBarActivity {
     Button goSignIn;
     Button goSignUp;
+
+    /**
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,7 +43,11 @@ public class SelectActivity extends ActionBarActivity {
         });
     }
 
-
+    /**
+     *
+     * @param menu
+     * @return
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -46,6 +55,11 @@ public class SelectActivity extends ActionBarActivity {
         return true;
     }
 
+    /**
+     *
+     * @param item
+     * @return
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will

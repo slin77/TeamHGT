@@ -1,0 +1,35 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="edu.gatech.cs2340.hgt.addFriendListFragment">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Adding New Friends"
+        android:includeFontPadding="true"
+        android:textSize="@dimen/abc_text_size_large_material"
+        android:id="@+id/afText"
+        android:layout_gravity="right|top"
+        android:background="#ff000000"
+        android:textColor="#fff9efff" />
+
+    <ListView
+        android:id="@android:id/list"
+        android:clickable="true"
+        android:focusable="true"
+        android:layout_width="match_parent"
+        android:layout_height="558dp"
+        android:layout_below="@id/afText"
+        android:layout_marginTop="30dp"/>
+
+    <RadioButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="0dp"
+        android:text="return"
+        android:id="@+id/af_return"
+        android:layout_gravity="left|top" />
+
+
+
+</FrameLayout>
