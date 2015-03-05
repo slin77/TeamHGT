@@ -1,0 +1,78 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" tools:context="edu.gatech.cs2340.hgt.NewSaleFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="item name"
+        android:id="@+id/new_sale_name"
+        android:layout_marginLeft="53dp"
+        android:layout_marginStart="53dp"
+        android:layout_marginTop="90dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/new_sale_item_name"
+        android:text="Please enter the item name"
+        android:layout_below="@+id/new_sale_name"
+        android:layout_alignLeft="@+id/new_sale_name"
+        android:layout_alignStart="@+id/new_sale_name" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="threshold price"
+        android:id="@+id/new_sale_price"
+        android:layout_marginTop="54dp"
+        android:layout_below="@+id/new_sale_item_name"
+        android:layout_alignLeft="@+id/new_sale_item_name"
+        android:layout_alignStart="@+id/new_sale_item_name" />
+
+    <RadioButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="submit"
+        android:id="@+id/new_sale_submitBtn"
+        android:layout_marginBottom="120dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/new_sale_item_name"
+        android:layout_alignEnd="@+id/new_sale_item_name" />
+
+    <RadioButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="cancel"
+        android:id="@+id/new_sale_cancelBtn"
+        android:layout_alignTop="@+id/new_sale_submitBtn"
+        android:layout_alignLeft="@+id/new_sale_price"
+        android:layout_alignStart="@+id/new_sale_price" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/new_sale_status"
+        android:layout_marginTop="54dp"
+        android:text="Click submit button to submit"
+        android:layout_below="@+id/new_sale_threshold_price"
+        android:layout_alignLeft="@+id/new_sale_cancelBtn"
+        android:layout_alignStart="@+id/new_sale_cancelBtn" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/new_sale_threshold_price"
+        android:text="Please enter the price"
+        android:layout_below="@+id/new_sale_price"
+        android:layout_alignLeft="@+id/new_sale_price"
+        android:layout_alignStart="@+id/new_sale_price"
+        android:layout_alignRight="@+id/new_sale_status"
+        android:layout_alignEnd="@+id/new_sale_status" />
+
+</RelativeLayout>
