@@ -3,6 +3,7 @@ package edu.gatech.cs2340.hgt;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
@@ -45,6 +46,10 @@ public class FriendsActivity extends ActionBarActivity implements FriendListFrag
                 .commit();
     }
 
+    public String getCurrentUser() {
+        return currentUser;
+    }
+
     /**
      * create the activity and show friend list fragment
      * @param savedInstanceState
@@ -52,6 +57,7 @@ public class FriendsActivity extends ActionBarActivity implements FriendListFrag
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        
         setContentView(R.layout.activity_friends);
         currentUser = getSharedPreferences("userSession", 0).getString("curUsername", null);
         if (savedInstanceState == null) {
@@ -59,6 +65,7 @@ public class FriendsActivity extends ActionBarActivity implements FriendListFrag
                     .add(R.id.myFriendContainer, new FriendListFragment(), "FriendListFragment")
                     .commit();
         }
+
         //db = new FriendDB(getApplicationContext());
     }
 
@@ -141,6 +148,14 @@ public class FriendsActivity extends ActionBarActivity implements FriendListFrag
         b.putString("description", "Number of Reports: 0");
         b.putFloat("rating", fullDetailedUser.getRating());
         b.putBoolean("isMale",true);
+    }
+
+    @Override
+    public void showUserHomePage() {
+        Intent i =  new Intent(this, UserHomeActivity.class);
+        startActivity(i);
+        finish();
+
     }
 
     /**

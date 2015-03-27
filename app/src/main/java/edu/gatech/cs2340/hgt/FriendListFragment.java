@@ -1,6 +1,7 @@
 package edu.gatech.cs2340.hgt;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ListFragment;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -17,8 +18,11 @@ import java.util.List;
  */
 public class FriendListFragment extends ListFragment{
     List<User> friends;
+    SalesNotifier sn;
+    String username;
     private Callbacks activity;
     private Button newFriendBtn;
+    private Button userhomeBtn;
     public FriendListFragment() {
 
     }
@@ -30,21 +34,6 @@ public class FriendListFragment extends ListFragment{
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        FriendDB friendDB = new FriendDB(getActivity());
-        //insert dummy date for testing
-        friendDB.addNewFriendship("samlin950205", "fakerUser1");
-        friendDB.addNewFriendship("samlin950205", "fakerUser2");
-        friendDB.addNewFriendship("samlin950205", "fakerUser3");
-        friendDB.addNewFriendship("samlin950205", "fakerUser4");
-        //
-//        SharedPreferences sp = getActivity()
-//                .getApplicationContext()
-//                .getSharedPreferences("userSession", 0);
-//        String currentUser = sp.getString("curUsername", null);
-//        FriendArrayAdapter adapter = new FriendArrayAdapter(getActivity(),
-//                R.layout.friend_listitem, friendDB.getFriendList(currentUser));
-//
-//        setListAdapter(adapter);
     }
 
     /**
@@ -60,7 +49,17 @@ public class FriendListFragment extends ListFragment{
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_friends, container, false);
         newFriendBtn = (Button) rootView.findViewById(R.id.addFriendBtn);
+
         newFriendBtn.setOnClickListener(new newFriendBtnListener());
+        userhomeBtn = (Button)rootView.findViewById(R.id.currentUserHomeBtn);
+        userhomeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activity.showUserHomePage();
+            }
+        });
+        //sn = new SalesNotifier(username, getActivity());
+        //notifyMatch();
         return rootView;
     }
 
@@ -101,16 +100,19 @@ public class FriendListFragment extends ListFragment{
                 .getApplicationContext()
                 .getSharedPreferences("userSession", 0)
                 .getString("curUsername", null);
+        this.username = username;
         friends = friendDB.getFriendList(username);
 
         FriendArrayAdapter adapter = new FriendArrayAdapter(getActivity(),
                 R.layout.friend_listitem, friendDB.getFriendList(username));
-
+        sn = new SalesNotifier(username, getActivity());
+        sn.notifyMatch();
         setListAdapter(adapter);
     }
 
     public interface Callbacks {
         public void onItemSelected(User user);
         public void showAddFriendFragment();
+        public void showUserHomePage();
     }
 }

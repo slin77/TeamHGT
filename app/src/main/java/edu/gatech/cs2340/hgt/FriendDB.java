@@ -39,6 +39,12 @@ public class FriendDB extends SQLiteOpenHelper {
                 + "timestamp TEXT)");
     }
 
+    @Override
+    public void onOpen(SQLiteDatabase db) {
+        super.onOpen(db);
+        onCreate(db);
+    }
+
     /**
      * @param db
      * @param oldVersion

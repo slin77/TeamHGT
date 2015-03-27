@@ -81,7 +81,8 @@ public class UserService {
     }
 
     /**
-     *
+     * check if two input passwords are the same case sensitive
+     * test by Jing Hong
      * @param pw
      * @param pwR
      * @return
@@ -113,11 +114,12 @@ public class UserService {
     }
 
     /**
-     *
+     * test by Bin Cao
+     * test if the length of the password between 8 to 16
      * @param password
      * @return
      */
-    private boolean checkPasswordLength(String password) {
+    public boolean checkPasswordLength(String password) {
        return checkUsernameLength(password);
     }
 
@@ -140,7 +142,42 @@ public class UserService {
      */
     public boolean deleteUser(String username) {
         return userDB.deleteUser(username);
+
     }
+
+
+    /**
+     * test by Shizhe Chen
+     * test if the input string is ***@***format
+     * @param email
+     * @return
+     */
+    public boolean isValidEmail(String email) {
+        return false;
+    }
+
+    /**
+     * test by Sizhe Lin
+     * if the input String contains %&^*
+     * @param input
+     * @return
+     */
+    public boolean hasSpecialCharacters(String input) {
+        return false;
+    }
+
+    /**
+     * test by Qizhang
+     * if the password has characters and numbers
+     * @param input
+     * @return
+     */
+    public boolean hasCharHasNumber(String input) {
+        return false;
+    }
+
+
+
 
 }
 

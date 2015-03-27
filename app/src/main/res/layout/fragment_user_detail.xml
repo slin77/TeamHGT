@@ -1,13 +1,14 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="edu.gatech.cs2340.hgt.UserHomeActivity$PlaceholderFragment"
-    android:backgroundTint="#ffe7ffec">
+    tools:context="edu.gatech.cs2340.hgt.FriendsActivity.PlaceholderFragment"
+    android:background="#ffffff">
 
+    <!-- TODO: Update blank fragment layout -->
 
     <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
         android:id="@+id/friend_profile_picture"
@@ -31,7 +32,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text= "@string/placeholder"
-        android:background="#fffff7e8"
+        android:background="#E8E6D0"
         android:id="@+id/friend_detail_description"
         android:layout_below="@+id/friend_profile_picture"
         android:layout_centerHorizontal="true"
@@ -54,30 +55,43 @@
     <ListView
         android:id="@+id/friend_detail_interest_list"
         android:layout_below="@+id/friend_detail_description"
-        android:layout_width="300dp"
+        android:layout_width="match_parent"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="0dp"
         android:layout_height="wrap_content"
         />
 
-    <RatingBar
-        android:layout_width="wrap_content"
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="60dp"
         android:layout_height="wrap_content"
-        android:id="@+id/friend_detail_rating"
-        android:clickable="false"
-        android:numStars="5"
-        android:rating = "2.0"
+        android:text="new sale"
+        android:id="@+id/user_detail_new_sale_btn"
+        android:layout_marginTop="32dp"
+        android:background="#E8E7D0"
         android:layout_below="@+id/friend_detail_email"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_centerHorizontal="true" />
 
-    <RadioButton
+    <Button
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:text="Edit"
+        android:background="#E8E7D0"
+        android:id="@+id/user_detail_edit_btn"
+        android:layout_alignTop="@+id/user_detail_new_sale_btn"
+        android:layout_toRightOf="@+id/user_detail_new_sale_btn"
+        android:layout_marginLeft="10dp"
+        android:layout_toEndOf="@+id/friend_detail_name" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="unfriend"
-        android:layout_below="@+id/friend_detail_rating"
-        android:id="@+id/friend_detail_unfriendBtn"
-        android:layout_alignParentRight="true"
-        android:layout_toEndOf="@+id/friend_detail_email" />
+        android:text="report"
+        android:id="@+id/user_detail_reportBtn"
+        android:layout_below="@+id/friend_detail_description"
+        android:layout_toRightOf="@+id/user_detail_edit_btn"
+        android:layout_toEndOf="@+id/user_detail_edit_btn" />
+
 
 </RelativeLayout>

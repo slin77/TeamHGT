@@ -4,7 +4,7 @@
     tools:context="edu.gatech.cs2340.hgt.FriendsActivity" tools:ignore="MergeRootFrame">
     <!--<fragment-->
         <!--android:id="@+id/listfragment"-->
-        <!--android:name="edu.gatech.cs2340.hgt.FriendListFragment"-->
+        <!--android:itemName="edu.gatech.cs2340.hgt.FriendListFragment"-->
         <!--android:layout_width="fill_parent"-->
         <!--android:layout_height="fill_parent"-->
         <!--tools:layout="@layout/fragment_friends"/>-->
