@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/HGT.iml" filepath="$PROJECT_DIR$/HGT.iml" />
       <module fileurl="file://$PROJECT_DIR$/TeamHGT.iml" filepath="$PROJECT_DIR$/TeamHGT.iml" />
-      <module fileurl="file://$PROJECT_DIR$/TeamHGTbranch.iml" filepath="$PROJECT_DIR$/TeamHGTbranch.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

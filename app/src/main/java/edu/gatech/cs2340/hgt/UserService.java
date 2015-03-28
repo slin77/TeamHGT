@@ -153,7 +153,13 @@ public class UserService {
      * @return
      */
     public boolean isValidEmail(String email) {
-        return false;
+        boolean result = false;
+        for (int i = 0; i < email.length(); i++) {
+            if (email.charAt(i) == '@') {
+                result = true;
+            }
+        }
+        return result;
     }
 
     /**
