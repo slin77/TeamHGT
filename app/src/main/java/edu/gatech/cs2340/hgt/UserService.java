@@ -152,7 +152,8 @@ public class UserService {
      * @param email
      * @return
      */
-    public boolean isValidEmail(String email) {
+    public static boolean isValidEmail(String email) {
+        if (email == null) return false;
         boolean result = false;
         for (int i = 0; i < email.length(); i++) {
             if (email.charAt(i) == '@') {
