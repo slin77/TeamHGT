@@ -16,10 +16,11 @@ import java.util.List;
 /**
  * Created by root on 2/16/15.
  */
+@SuppressWarnings("ALL")
 public class FriendListFragment extends ListFragment{
-    List<User> friends;
-    SalesNotifier sn;
-    String username;
+    private List<User> friends;
+    private SalesNotifier sn;
+    private String username;
     private Callbacks activity;
     private Button newFriendBtn;
     private Button userhomeBtn;
