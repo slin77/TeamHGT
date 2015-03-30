@@ -16,11 +16,11 @@ public class checkPasswordLengthTest extends TestCase {
         assertTrue(t1);
         boolean t2 = UserService.checkPasswordLength("1234567891234567");
         assertTrue(t2);
-        boolean t3 = UserService.checkPasswordLength("123456789045");
+        boolean t3 = UserService.checkPasswordLength("A123456789045s");
         assertTrue(t3);
-        boolean t4 = UserService.checkPasswordLength("1");
+        boolean t4 = UserService.checkPasswordLength("1d");
         assertFalse(t4);
-        boolean t5 = UserService.checkPasswordLength("12345678123456789456123456789");
+        boolean t5 = UserService.checkPasswordLength("12345678123456abc456123456789");
         assertFalse(t5);
     }
 }
