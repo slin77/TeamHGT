@@ -102,7 +102,7 @@ public class LoginActivity extends ActionBarActivity {
     private void doLogin(String username) {
         UserDB db = new UserDB(getApplicationContext());
 
-//        db.insertUser("fakename1","fakerUser1", "123456789", "email" );
+//        db.insertUser("ffakename1","fakerUser1", "123456789", "email" );
 //        db.insertUser("fakename2","fakerUser2", "123456789", "email" );
 //        db.insertUser("fakename3","fakerUser3", "123456789", "email" );
 //        db.insertUser("fakename4","fakerUser4", "123456789", "email" );
