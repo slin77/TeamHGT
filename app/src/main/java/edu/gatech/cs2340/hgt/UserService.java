@@ -87,7 +87,7 @@ public class UserService {
      * @param pwR
      * @return
      */
-    public boolean checkPasswordMatch(String pw, String pwR) {
+    public static boolean checkPasswordMatch(String pw, String pwR) {
         if (pw == null || pwR == null) {
             return false;
         }

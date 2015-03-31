@@ -4,7 +4,7 @@ import junit.framework.TestCase;
 
 
 /**
- * Created by caesar on 3/28/15.
+ * Created by Shizhe Chen on 3/28/15.
  */
 public class isValidEmailTest extends TestCase {
     public void testNullEmail() {
