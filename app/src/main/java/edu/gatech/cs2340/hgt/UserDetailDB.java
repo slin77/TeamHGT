@@ -54,7 +54,9 @@ public class UserDetailDB extends SQLiteOpenHelper {
                 "item_name TEXT," +
                 "price REAL," +
                 "location TEXT," +
-                "reporter Text)");
+                "reporter Text," +
+                "lat REAL," +
+                "lgn REAL)");
     }
 
     public List<Report> getMatchReports(String username) {
@@ -105,8 +107,43 @@ public class UserDetailDB extends SQLiteOpenHelper {
         cv.put("price", price);
         cv.put("location", location);
         cv.put("reporter", username);
+        cv.put("lat", 0);
+        cv.put("lgn", 0);
         Long ret = db.insert("reports", null, cv);
         return ret != 0;
+    }
+
+    public boolean insertNewReport(String itemName, String price, String location, String username,
+                                   double lat, double lgn) {
+        SQLiteDatabase db =  getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put("item_name", itemName);
+        cv.put("price", price);
+        cv.put("location", location);
+        cv.put("reporter", username);
+        cv.put("lat", lat);
+        cv.put("lgn", lgn);
+        Long ret = db.insert("reports", null, cv);
+        return ret != 0;
+    }
+
+    public List<Report> getReports(String username) {
+        SQLiteDatabase db  = getReadableDatabase();
+        Cursor cursor = db.query("reports", new String[] {},"reporter=?"
+                ,new String[] {username}, null, null, null);
+        ArrayList<Report> reports = new ArrayList<>(10);
+        cursor.moveToFirst();
+        while(cursor.moveToNext()) {
+            String itemName = cursor.getString(cursor.getColumnIndex("item_name"));
+            String price = cursor.getString(cursor.getColumnIndex("price"));
+            String location = cursor.getString(cursor.getColumnIndex("location"));
+            String reporter = cursor.getString(cursor.getColumnIndex("reporter"));
+            double lat = cursor.getDouble(cursor.getColumnIndex("lat"));
+            double lgn = cursor.getDouble(cursor.getColumnIndex("lgn"));
+            //System.out.println(itemName + price+ location + reporter);
+            reports.add(new Report(itemName, location, price, reporter, lat, lgn));
+        }
+        return reports;
     }
 
 

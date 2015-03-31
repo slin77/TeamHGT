@@ -41,7 +41,10 @@ public class NewReportFragment extends Fragment implements OnMapReadyCallback {
     private EditText price;
     private NewReportCallBack activity;
     private String curUsername;
+    private String locality;
     private Context context;
+    private double lat;
+    private double lgn;
   //  private GoogleMap mMap;
   //  private MapView mMapView;
     private Menu menu;
@@ -113,16 +116,19 @@ public class NewReportFragment extends Fragment implements OnMapReadyCallback {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == 100 && resultCode == Activity.RESULT_OK ) {
-            String locality = data.getStringExtra("locality");
+            locality = data.getStringExtra("locality");
             Toast.makeText(this.context, locality, Toast.LENGTH_SHORT).show();
         }
+        this.lat = data.getDoubleExtra("lat", 0);
+        this.lgn = data.getDoubleExtra("lgn", 0);
     }
 
     private class OnSubmitListener implements View.OnClickListener {
 
         @Override
         public void onClick(View v) {
-            if (addNewReport(itemName.getText().toString(), price.getText().toString(), "not available")) {
+            if (addNewReport(itemName.getText().toString(), price.getText().toString(),
+                    locality, lat, lgn)) {
                 displayAlert("You have successfull reported a sale");
             } else {
                 displayAlert("error occurs please try again");
@@ -139,6 +145,10 @@ public class NewReportFragment extends Fragment implements OnMapReadyCallback {
      */
     private boolean addNewReport(String itemName, String price, String location) {
         return activity.addNewReport(itemName, price, location);
+    }
+
+    private boolean addNewReport(String itemName, String price, String location, double lat, double lgn) {
+        return activity.addNewReport(itemName, price, location, lat, lgn);
     }
 
     /**
@@ -194,6 +204,7 @@ public class NewReportFragment extends Fragment implements OnMapReadyCallback {
     public interface NewReportCallBack {
         public boolean returnToUserHomeActivity();
         public boolean addNewReport(String itemName, String price, String location);
+        public boolean addNewReport(String itemName, String price, String location, double lat, double lgn);
     }
 
 //    @Override

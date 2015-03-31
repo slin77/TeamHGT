@@ -7,6 +7,7 @@ import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
+import android.opengl.Visibility;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -40,13 +41,6 @@ public class SalesLocationActivity extends FragmentActivity implements GoogleApi
     private Marker marker;
     private Button returnBtn;
     private Button goBtn;
-    private static final double
-            SEATTLE_LAT = 47.60621,
-            SEATTLE_LNG =-122.33207,
-            SYDNEY_LAT = -33.867487,
-            SYDNEY_LNG = 151.20699,
-            NEWYORK_LAT = 40.714353,
-            NEWYORK_LNG = -74.005973;
     private static final int GPS_ERRORDIALOG_REQUEST = 9001;
     private GoogleApiClient mClient;
     private Location lastLocation;
@@ -66,6 +60,26 @@ public class SalesLocationActivity extends FragmentActivity implements GoogleApi
         } else {
             setContentView(R.layout.activity_sales_location);
         }
+        Intent i = getIntent();
+        if (i.hasExtra("name")) {
+            hideButtons();
+            double lat = i.getDoubleExtra("lat", 0);
+            double lgn = i.getDoubleExtra("lgn", 0);
+            goToLocation(lat,lgn, 10);
+            setMarker(i.getStringExtra("name" ), lat, lgn);
+        } else {
+            setButtons();
+            setMarker("Please enter the location of the sale", 0, 0);
+        }
+
+    }
+
+    private void hideButtons() {
+        findViewById(R.id.location_go).setVisibility(View.INVISIBLE);
+        findViewById(R.id.location_return).setVisibility(View.INVISIBLE);
+    }
+
+    private void setButtons() {
         goBtn = (Button)findViewById(R.id.location_go);
         returnBtn = (Button)findViewById(R.id.location_return);
         returnBtn.setOnClickListener(new View.OnClickListener() {
@@ -263,7 +277,7 @@ public class SalesLocationActivity extends FragmentActivity implements GoogleApi
     @Override
     protected void onResumeFragments() {
         super.onResumeFragments();
-        if (mClient.isConnected()) {
+        if (mClient!= null && mClient.isConnected()) {
             startLocationUpdate();
         }
     }

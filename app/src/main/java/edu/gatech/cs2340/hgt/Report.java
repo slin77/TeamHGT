@@ -8,12 +8,23 @@ public class Report {
     String price;
     String location;
     String reporter;
+    double lat = 0;
+    double lgn = 0;
 
     public Report(String price, String location, String itemName, String reporter) {
         this.price = price;
         this.location = location;
         this.itemName = itemName;
         this.reporter = reporter;
+    }
+
+    public Report(String itemName, String price, String location, String reporter, double lat, double lgn) {
+        this.itemName = itemName;
+        this.price = price;
+        this.location = location;
+        this.reporter = reporter;
+        this.lat = lat;
+        this.lgn = lgn;
     }
 
     public String getName() {
@@ -46,6 +57,22 @@ public class Report {
 
     public void setReporter(String reporter) {
         this.reporter = reporter;
+    }
+
+    public double getLat() {
+        return lat;
+    }
+
+    public void setLat(double lat) {
+        this.lat = lat;
+    }
+
+    public double getLgn() {
+        return lgn;
+    }
+
+    public void setLgn(double lgn) {
+        this.lgn = lgn;
     }
 
     @Override

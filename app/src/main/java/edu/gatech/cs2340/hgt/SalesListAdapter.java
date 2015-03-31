@@ -15,9 +15,9 @@ import java.util.List;
 /**
  * Created by root on 3/5/15.
  */
-public class SalesListAdapter extends ArrayAdapter<Sale> {
+public class SalesListAdapter extends ArrayAdapter<Report> {
    private Context context;
-   private List<Sale> list;
+   private List<Report> list;
 
     /**
      *
@@ -25,7 +25,7 @@ public class SalesListAdapter extends ArrayAdapter<Sale> {
      * @param resouces the resources xml fils
      * @param list list of item within the list view
      */
-   public SalesListAdapter(Context context,int resouces, List<Sale> list) {
+   public SalesListAdapter(Context context,int resouces, List<Report> list) {
        super(context, resouces, list);
        this.context = context;
        this.list = list;
@@ -40,17 +40,21 @@ public class SalesListAdapter extends ArrayAdapter<Sale> {
      */
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        Sale sale = list.get(position);
+        Report sale = list.get(position);
         LayoutInflater inflater = (LayoutInflater)context
                 .getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
         View view = inflater.inflate(R.layout.sale_item, null);
         ImageView image = (ImageView)view.findViewById(R.id.itemImage);
         image.setImageResource(R.drawable.item_image2);
         TextView name = (TextView)view.findViewById(R.id.sale_name);
-        name.setText(sale.getItemName());
+        name.setText(sale.getName());
         TextView price = (TextView)view.findViewById(R.id.threshold_price);
-        price.setText(sale.getThresholdPrice() + "$ on:  1995/02/05");
+        price.setText(sale.getPrice() + "$ on:  1995/02/05");
         return view;
+    }
+
+    public Report getSale(int position) {
+        return list.get(position);
     }
 
 }

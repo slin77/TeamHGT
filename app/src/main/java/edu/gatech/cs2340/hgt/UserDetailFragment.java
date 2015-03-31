@@ -9,6 +9,7 @@ import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -72,10 +73,18 @@ public class UserDetailFragment extends Fragment {
 
     private void loadInterests(String username) {
         UserDetailDB db =  new UserDetailDB(getActivity());
-        List<Sale> list = db.getSales(username);
+        List<Report> list = db.getReports(username);
         SalesListAdapter adapter = new SalesListAdapter(getActivity(), R.layout.sale_item
         , list);
         interests.setAdapter(adapter);
+        interests.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                SalesListAdapter adapter = (SalesListAdapter)interests.getAdapter();
+                Report report = adapter.getSale(position);
+                activity.displayReport(report);
+            }
+        });
     }
 
     /**
@@ -90,8 +99,6 @@ public class UserDetailFragment extends Fragment {
         shortDes.setText("not yet available");
         profileImg.setImageResource(R.drawable.profile_icon_temp);
         loadInterests(currentUser.getUsername());
-
-        //not yet implement interest list
     }
 
 
@@ -143,6 +150,8 @@ public class UserDetailFragment extends Fragment {
        public void returnToFriendList();
 
        public void displayNewReport();
+
+       public void displayReport(Report report);
    }
 
 

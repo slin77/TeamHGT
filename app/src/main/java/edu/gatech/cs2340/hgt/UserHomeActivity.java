@@ -93,10 +93,25 @@ public class UserHomeActivity extends ActionBarActivity implements UserDetailFra
         return db.insertNewReport(itemName, price, location, currentUserName);
     }
 
+    public boolean addNewReport(String itemName, String price, String location,
+                                double lat, double lgn) {
+        UserDetailDB db = new UserDetailDB(this);
+        return db.insertNewReport(itemName, price, location, currentUserName, lat, lgn);
+    }
+
     @Override
     public void displayNewReport() {
         getFragmentManager().beginTransaction()
                 .replace(R.id.UserHomeContainer,new NewReportFragment())
                 .commit();
+    }
+
+    @Override
+    public void displayReport(Report report) {
+        Intent i = new Intent(this, SalesLocationActivity.class);
+        i.putExtra("name", report.getName());
+        i.putExtra("lat", report.getLat());
+        i.putExtra("lgn", report.getLgn());
+        startActivity(i);
     }
 }
