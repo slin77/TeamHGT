@@ -30,7 +30,7 @@ public class
 
     /**
      * default onCreate Method
-     * @param savedInstanceState
+     * @param savedInstanceState saved instance state
      */
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -39,10 +39,10 @@ public class
 
     /**
      * create the views for the fragments
-     * @param inflater
-     * @param container
-     * @param savedInstanceState
-     * @return
+     * @param inflater layout inflater
+     * @param container group container
+     * @param savedInstanceState saved instance state
+     * @return the view on demand
      */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -97,7 +97,7 @@ public class
 
     /**
      * the helper method for creating a alert box to display a message
-     * @param s
+     * @param s the string which display the alert
      */
     private void displayAlert(String s) {
         AlertDialog.Builder builder = new AlertDialog.Builder((Activity)activity);
@@ -109,7 +109,7 @@ public class
 
     /**
      * save the reference to parent activity, which has to implements callback interface
-     * @param activity
+     * @param activity the activity onAttach
      */
     @Override
     public void onAttach(Activity activity) {
@@ -127,7 +127,6 @@ public class
     public interface Back {
         /**
          * return to User's home page
-         * @return if is has successfully returned
          */
         public void returnToUserHomeActivity();
 

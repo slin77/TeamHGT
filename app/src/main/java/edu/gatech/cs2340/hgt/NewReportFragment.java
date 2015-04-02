@@ -47,10 +47,10 @@ public class NewReportFragment extends Fragment implements OnMapReadyCallback {
 
     /**
      *
-     * @param inflater
-     * @param container
-     * @param savedInstanceState
-     * @return
+     * @param inflater layout inflater
+     * @param container group container
+     * @param savedInstanceState the saved state
+     * @return the view on demand
      */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -122,10 +122,10 @@ public class NewReportFragment extends Fragment implements OnMapReadyCallback {
 
     /**
      * add new report to dataBase
-     * @param itemName
-     * @param price
-     * @param location
-     * @return
+     * @param itemName name of the item
+     * @param price the price of the item
+     * @param location the location of the item
+     * @return boolean true of false
      */
     private boolean addNewReport(String itemName, String price, String location) {
         return activity.addNewReport(itemName, price, location);
@@ -137,7 +137,7 @@ public class NewReportFragment extends Fragment implements OnMapReadyCallback {
 
     /**
      * the helper method for creating a alert box to display a message
-     * @param s
+     * @param s the string which needed to be displayed
      */
     private void displayAlert(String s) {
         AlertDialog.Builder builder = new AlertDialog.Builder((Activity)activity);

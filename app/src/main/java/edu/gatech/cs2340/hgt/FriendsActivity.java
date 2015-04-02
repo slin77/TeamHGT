@@ -46,7 +46,7 @@ public class FriendsActivity extends ActionBarActivity implements FriendListFrag
 
     /**
      * create the activity and show friend list fragment
-     * @param savedInstanceState
+     * @param savedInstanceState the saved instance
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,8 +65,8 @@ public class FriendsActivity extends ActionBarActivity implements FriendListFrag
 
     /**
      *
-     * @param menu
-     * @return
+     * @param menu the menu
+     * @return boolean true of false
      */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -77,8 +77,8 @@ public class FriendsActivity extends ActionBarActivity implements FriendListFrag
 
     /**
      *
-     * @param item
-     * @return
+     * @param item the item to return
+     * @return boolean true of false
      */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -97,7 +97,7 @@ public class FriendsActivity extends ActionBarActivity implements FriendListFrag
 
     /**
      * select the user and show the fragment of the user's detail
-     * @param user
+     * @param user user logged in
      */
     @Override
     public void onItemSelected(User user) {
@@ -131,8 +131,8 @@ public class FriendsActivity extends ActionBarActivity implements FriendListFrag
 
     /**
      * put the default values is the user is not fulldetailed
-     * @param b
-     * @param fullDetailedUser
+     * @param b bundle
+     * @param fullDetailedUser user detail
      */
     private void putDefault(Bundle b, User fullDetailedUser) {
         b.putString("currentUser", currentUser);
@@ -154,9 +154,9 @@ public class FriendsActivity extends ActionBarActivity implements FriendListFrag
 
     /**
      *
-     * @param username1
-     * @param username2
-     * @return
+     * @param username1 user one who want to add friend
+     * @param username2 user two who need to be added friend with
+     * @return boolean true of false
      */
     @Override
     public boolean addFriendship(String username1, String username2) {

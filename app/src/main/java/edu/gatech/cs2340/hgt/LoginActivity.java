@@ -30,7 +30,7 @@ public class LoginActivity extends ActionBarActivity {
 
     /**
      *
-     * @param savedInstanceState
+     * @param savedInstanceState the saved instance of item
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,7 +93,7 @@ public class LoginActivity extends ActionBarActivity {
 
     /**
      *
-     * @param username
+     * @param username user who want to log in
      */
     private void doLogin(String username) {
         Intent i = new Intent(LoginActivity.this, FriendsActivity.class);
@@ -163,8 +163,8 @@ public class LoginActivity extends ActionBarActivity {
 
     /**
      *
-     * @param menu
-     * @return
+     * @param menu the menu
+     * @return boolean true of false
      */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -175,8 +175,8 @@ public class LoginActivity extends ActionBarActivity {
 
     /**
      *
-     * @param item
-     * @return
+     * @param item the item which is selected
+     * @return boolean true of false
      */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
