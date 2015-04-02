@@ -13,11 +13,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-/**
- * Created by root on 2/18/15.
- */
+
 public class FriendDB extends SQLiteOpenHelper {
-    Context context;
+    private final Context context;
 
     /**
      * @param context
@@ -74,8 +72,7 @@ public class FriendDB extends SQLiteOpenHelper {
             cv.put("timestamp", simpleDateFormatformat.format(date));
             Long ret = db.insert("friendship", null, cv);
             db.close();
-            if (ret != -1) return true;
-            else return false;
+            return ret != -1;
         }
     }
 
@@ -86,10 +83,10 @@ public class FriendDB extends SQLiteOpenHelper {
      */
     public boolean areFriend(String currentUser, String targetUser) {
         SQLiteDatabase db = getReadableDatabase();
-        SQLiteQueryBuilder sb = new SQLiteQueryBuilder();
+        //SQLiteQueryBuilder sb = new SQLiteQueryBuilder();
         currentUser = "'" + currentUser + "'";
         targetUser = "'" + targetUser + "'";
-        Cursor cursor = db.rawQuery(sb.buildQueryString(false, "friendship", null
+        Cursor cursor = db.rawQuery(SQLiteQueryBuilder.buildQueryString(false, "friendship", null
                 , "(username1 = " + currentUser + " AND username2 = " + targetUser + ") OR (username2 =  " + currentUser + " AND username1 = " + targetUser + ")", null, null, null, null)
                 , null);
         int count = cursor.getCount();
@@ -117,7 +114,7 @@ public class FriendDB extends SQLiteOpenHelper {
         }
         db.close();
         System.out.println(friends.size());
-        return friends.toArray(new String[0]);
+        return friends.toArray(new String[friends.size()]);
 
     }
 
@@ -127,7 +124,7 @@ public class FriendDB extends SQLiteOpenHelper {
      */
     public List<User> getFriendList(String username) {
         String[] friends = getFriends(username);
-        List<User> friendList = new ArrayList<User>(10);
+        List<User> friendList = new ArrayList<>(10);
         UserDB db = new UserDB(context);
         for (String friend : friends) {
             friendList.add(new User(friend, db.getName(friend), db.getEmail(friend)));

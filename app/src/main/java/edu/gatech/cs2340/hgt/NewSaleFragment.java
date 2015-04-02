@@ -2,7 +2,6 @@ package edu.gatech.cs2340.hgt;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.text.format.Time;
@@ -11,22 +10,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RadioButton;
 import android.widget.TextView;
 
 public class
         NewSaleFragment extends Fragment {
 
-    private TextView name;
-    private TextView price;
     private EditText itemName;
     private EditText thresholdPrice;
     private EditText status;
-    private Button submitBtn;
-    private Button cancelBtn;
     private Back activity;
     private SalesNotifier sn;
-    private String username;
 
     /**
      * required
@@ -56,12 +49,12 @@ public class
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_new_sale, container, false);
-        name = (TextView)rootView.findViewById(R.id.new_sale_name);
-        price = (TextView) rootView.findViewById(R.id.new_sale_price);
+        //TextView name = (TextView) rootView.findViewById(R.id.new_sale_name);
+        //TextView price = (TextView) rootView.findViewById(R.id.new_sale_price);
         itemName = (EditText) rootView.findViewById(R.id.new_sale_item_name);
         thresholdPrice = (EditText)rootView.findViewById(R.id.new_sale_threshold_price);
-        submitBtn  = (Button)rootView.findViewById(R.id.new_sale_submitBtn);
-        cancelBtn  = (Button)rootView.findViewById(R.id.new_sale_cancelBtn);
+        Button submitBtn = (Button) rootView.findViewById(R.id.new_sale_submitBtn);
+        Button cancelBtn = (Button) rootView.findViewById(R.id.new_sale_cancelBtn);
         submitBtn.setOnClickListener(new SubmitListener());
         cancelBtn.setOnClickListener(new CancelListener());
         return rootView;
@@ -82,11 +75,9 @@ public class
             if (iName.isEmpty()) {
                 displayAlert("item name can not be empty");
                 //status.setText("item name can not be empty");
-                return;
             } else if (tPrice.isEmpty()) {
                 //status.setText("price field can not be empty");
                 displayAlert("please enter a valid threshold price");
-                return;
             } else {
                 UserDetailDB db = new UserDetailDB(getActivity());
                 String username = activity.getCurrentUsername();
@@ -124,7 +115,7 @@ public class
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         this.activity = (Back)activity;
-        this.username = ((Back) activity).getCurrentUsername();
+        String username = ((Back) activity).getCurrentUsername();
         sn = new SalesNotifier(username, activity);
     }
 
@@ -138,7 +129,7 @@ public class
          * return to User's home page
          * @return if is has successfully returned
          */
-        public boolean returnToUserHomeActivity();
+        public void returnToUserHomeActivity();
 
         /**
          * get the logged in username

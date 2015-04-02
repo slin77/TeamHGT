@@ -28,15 +28,6 @@ import com.google.android.gms.maps.model.LatLng;
 
 public class NewReportFragment extends Fragment implements OnMapReadyCallback {
 
-    private static final double
-    SEATTLE_LNG =-122.33207,
-    SYDNEY_LAT = -33.867487,
-    SYDNEY_LNG = 151.20699,
-    NEWYORK_LAT = 40.714353,
-    NEWYORK_LNG = -74.005973;
-
-    private Button submitBtn;
-    private Button cancelBtn;
     private EditText itemName;
     private EditText price;
     private NewReportCallBack activity;
@@ -48,17 +39,10 @@ public class NewReportFragment extends Fragment implements OnMapReadyCallback {
   //  private GoogleMap mMap;
   //  private MapView mMapView;
     private Menu menu;
-    private Button goLocationBtn;
-
 
 
     public NewReportFragment() {
         // Required empty public constructor
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
     }
 
     /**
@@ -73,9 +57,9 @@ public class NewReportFragment extends Fragment implements OnMapReadyCallback {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_new_report, container, false);
-        submitBtn = (Button) rootView.findViewById(R.id.new_report_submitBtn);
-        cancelBtn = (Button)rootView.findViewById(R.id.new_report_cancelBtn);
-        goLocationBtn = (Button)rootView.findViewById(R.id.new_report_location);
+        Button submitBtn = (Button) rootView.findViewById(R.id.new_report_submitBtn);
+        Button cancelBtn = (Button) rootView.findViewById(R.id.new_report_cancelBtn);
+        Button goLocationBtn = (Button) rootView.findViewById(R.id.new_report_location);
         itemName = (EditText)rootView.findViewById(R.id.new_report_item_name);
         price = (EditText)rootView.findViewById(R.id.new_report_price);
         //mMapView = (MapView)rootView.findViewById(R.id.map);
@@ -202,7 +186,7 @@ public class NewReportFragment extends Fragment implements OnMapReadyCallback {
 //    }
 
     public interface NewReportCallBack {
-        public boolean returnToUserHomeActivity();
+        public void returnToUserHomeActivity();
         public boolean addNewReport(String itemName, String price, String location);
         public boolean addNewReport(String itemName, String price, String location, double lat, double lgn);
     }

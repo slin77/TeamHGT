@@ -54,7 +54,7 @@ public class SignUpActivityTest extends ActivityInstrumentationTestCase2<SignUpA
     }
 
     @UiThreadTest
-    public void testEmpptyUsername() {
+    public void testEmptyUsername() {
         reset();
         activity.runOnUiThread(new Runnable() {
             @Override

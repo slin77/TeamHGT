@@ -10,7 +10,7 @@ import android.view.MenuItem;
 
 public class UserHomeActivity extends ActionBarActivity implements UserDetailFragment.UserDetailCallback,
         NewSaleFragment.Back, NewReportFragment.NewReportCallBack{
-    String currentUserName;
+    private String currentUserName;
 
     @Override
     public String getCurrentUsername() {
@@ -76,7 +76,7 @@ public class UserHomeActivity extends ActionBarActivity implements UserDetailFra
     }
 
     @Override
-    public boolean returnToUserHomeActivity() {
+    public void returnToUserHomeActivity() {
         Fragment fragment = new UserDetailFragment();
         Bundle b =  new Bundle();
         b.putString("username", currentUserName);
@@ -84,7 +84,6 @@ public class UserHomeActivity extends ActionBarActivity implements UserDetailFra
         getFragmentManager().beginTransaction()
                            .replace(R.id.UserHomeContainer, fragment)
                            .commit();
-        return true;
     }
 
     @Override

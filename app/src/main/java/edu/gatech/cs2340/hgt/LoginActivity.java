@@ -3,7 +3,6 @@ package edu.gatech.cs2340.hgt;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Looper;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -21,15 +20,13 @@ import java.util.TimerTask;
 
 
 public class LoginActivity extends ActionBarActivity {
-    Button LoginBtn;
-    Button SignupBtn;
-    EditText nameField;
-    EditText passwordField;
-    TextView loginStatus;
-    ProgressBar loginBar;
+    private EditText nameField;
+    private EditText passwordField;
+    private TextView loginStatus;
+    private ProgressBar loginBar;
     ProgressDialog loginDia;
-    RadioButton returnWelcome;
-    UserService loginChecker;
+    private RadioButton returnWelcome;
+    private UserService loginChecker;
 
     /**
      *
@@ -42,8 +39,8 @@ public class LoginActivity extends ActionBarActivity {
         setContentView(R.layout.activity_login);
 
         loginStatus = (TextView) findViewById(R.id.loginStatus);
-        LoginBtn = (Button) findViewById(R.id.LoginBtn);
-        SignupBtn = (Button) findViewById(R.id.signupBtn);
+        Button loginBtn = (Button) findViewById(R.id.LoginBtn);
+        Button signupBtn = (Button) findViewById(R.id.signupBtn);
         nameField = (EditText) findViewById(R.id.name);
         nameField.setText(getIntent().getStringExtra("Mess1"));
         passwordField = (EditText) findViewById((R.id.password));
@@ -64,7 +61,7 @@ public class LoginActivity extends ActionBarActivity {
             }
         });
 
-        LoginBtn.setOnClickListener(new View.OnClickListener() {
+        loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String username = nameField.getText().toString();
@@ -76,12 +73,11 @@ public class LoginActivity extends ActionBarActivity {
 
                 } else {
                     loginStatus.setText("login Failed, please check Again");
-                    return;
                 }
             }
         });
 
-        SignupBtn.setOnClickListener(new View.OnClickListener() {
+        signupBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(LoginActivity.this, SignUpActivity.class);
@@ -92,32 +88,21 @@ public class LoginActivity extends ActionBarActivity {
 
     }
 
-        public Timer timer = null;
-        public  TimerTask timerTask = null;
+        private Timer timer = null;
+        private TimerTask timerTask = null;
 
     /**
      *
      * @param username
      */
     private void doLogin(String username) {
-        UserDB db = new UserDB(getApplicationContext());
-
-//        db.insertUser("ffakename1","fakerUser1", "123456789", "email" );
-//        db.insertUser("fakename2","fakerUser2", "123456789", "email" );
-//        db.insertUser("fakename3","fakerUser3", "123456789", "email" );
-//        db.insertUser("fakename4","fakerUser4", "123456789", "email" );
         Intent i = new Intent(LoginActivity.this, FriendsActivity.class);
         SharedPreferences sp = getApplicationContext().getSharedPreferences("userSession", 0);
         SharedPreferences.Editor ed = sp.edit();
         ed.putString("curUsername", username);
-        ed.commit();
+        ed.apply();
         startActivity(i);
         finish();
-    }
-    @Override
-    protected void onResume() {
-        super.onResume();
-        //startTimer();
     }
 
     @Override
@@ -172,7 +157,7 @@ public class LoginActivity extends ActionBarActivity {
             timer.cancel();
             timerTask = null;
             timer = null;
-            hidePB();;
+            hidePB();
         }
     }
 

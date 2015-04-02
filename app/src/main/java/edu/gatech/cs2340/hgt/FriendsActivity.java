@@ -1,28 +1,22 @@
 package edu.gatech.cs2340.hgt;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
-import android.transition.Transition;
-import android.transition.TransitionManager;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.SurfaceHolder;
 import android.view.View;
 import android.view.ViewGroup;
-import android.os.Build;
 
 
 public class FriendsActivity extends ActionBarActivity implements FriendListFragment.Callbacks
         , addFriendListFragment.CallBack2, FriendDetailFragment.RemoveFragmentable {
     //FriendDB db;
-    String currentUser;
+    private String currentUser;
     /**
      *
      */
@@ -170,7 +164,7 @@ public class FriendsActivity extends ActionBarActivity implements FriendListFrag
         FriendDB db = new FriendDB(getApplicationContext());
         if(db.addNewFriendship(username1, username2)) {
             builder.setMessage(("You are now friend with: " + username2))
-                    .setTitle("Congradulations")
+                    .setTitle("Congratulations")
                     .create()
                     .show();
             return true;
@@ -184,9 +178,8 @@ public class FriendsActivity extends ActionBarActivity implements FriendListFrag
     }
 
     @Override
-    public boolean returnToFriendListFragment() {
+    public void returnToFriendListFragment() {
         showFriendList();
-        return true;
     }
 
     /**
@@ -200,6 +193,7 @@ public class FriendsActivity extends ActionBarActivity implements FriendListFrag
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
+            @SuppressWarnings("UnnecessaryLocalVariable")
             View rootView = inflater.inflate(R.layout.fragment_friends, container, false);
             return rootView;
         }

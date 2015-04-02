@@ -1,13 +1,11 @@
 package edu.gatech.cs2340.hgt;
 
-import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
-import android.opengl.Visibility;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -17,7 +15,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.GooglePlayServicesClient;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationRequest;
@@ -32,6 +29,7 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 
 public class SalesLocationActivity extends FragmentActivity implements GoogleApiClient.ConnectionCallbacks,
@@ -39,8 +37,6 @@ public class SalesLocationActivity extends FragmentActivity implements GoogleApi
 
     private GoogleMap mMap;
     private Marker marker;
-    private Button returnBtn;
-    private Button goBtn;
     private static final int GPS_ERRORDIALOG_REQUEST = 9001;
     private GoogleApiClient mClient;
     private Location lastLocation;
@@ -80,8 +76,8 @@ public class SalesLocationActivity extends FragmentActivity implements GoogleApi
     }
 
     private void setButtons() {
-        goBtn = (Button)findViewById(R.id.location_go);
-        returnBtn = (Button)findViewById(R.id.location_return);
+        Button goBtn = (Button) findViewById(R.id.location_go);
+        Button returnBtn = (Button) findViewById(R.id.location_return);
         returnBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -104,9 +100,9 @@ public class SalesLocationActivity extends FragmentActivity implements GoogleApi
             public void onClick(View v) {
                 try {
                     geoLocate(v);
-                }catch (Exception e) {
-                    Toast.makeText(SalesLocationActivity.this, e.getStackTrace().toString(),
-                            Toast.LENGTH_SHORT);
+                } catch (Exception e) {
+                    Toast.makeText(SalesLocationActivity.this, Arrays.toString(e.getStackTrace()),
+                            Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -115,7 +111,7 @@ public class SalesLocationActivity extends FragmentActivity implements GoogleApi
     /**
      * helper for builder the Google Map API
      */
-    protected synchronized void buildGoogleApiClient() {
+    synchronized void buildGoogleApiClient() {
         mClient = new GoogleApiClient.Builder(this)
                 .addConnectionCallbacks(this)
                 .addOnConnectionFailedListener(this)
@@ -196,7 +192,7 @@ public class SalesLocationActivity extends FragmentActivity implements GoogleApi
      * check if the GooglePlayService is Okay
      * @return
      */
-    public boolean serviceOK() {
+    boolean serviceOK() {
         int isAvailable = GooglePlayServicesUtil.isGooglePlayServicesAvailable(this);
         if (isAvailable == ConnectionResult.SUCCESS) {
             return true;
@@ -204,7 +200,7 @@ public class SalesLocationActivity extends FragmentActivity implements GoogleApi
             Dialog dialog = GooglePlayServicesUtil.getErrorDialog(isAvailable, this, GPS_ERRORDIALOG_REQUEST );
             dialog.show();
         } else {
-            Toast.makeText(this, "dont have access to Google Play Service", Toast.LENGTH_SHORT);
+            Toast.makeText(this, "dont have access to Google Play Service", Toast.LENGTH_SHORT).show();
         }
         return false;
     }
@@ -236,7 +232,7 @@ public class SalesLocationActivity extends FragmentActivity implements GoogleApi
             if (mMap != null) {
                 setUpMap();
             } else {
-                Toast.makeText(this, "map is not available", Toast.LENGTH_SHORT);
+                Toast.makeText(this, "map is not available", Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -268,7 +264,7 @@ public class SalesLocationActivity extends FragmentActivity implements GoogleApi
     private void stopLocationUpdates() {
         if (mClient.isConnected()) {
             LocationServices.FusedLocationApi.removeLocationUpdates(mClient,
-                    (com.google.android.gms.location.LocationListener) this);
+                   this);
         } else {
             makeToast("client not connected");
         }
@@ -293,7 +289,7 @@ public class SalesLocationActivity extends FragmentActivity implements GoogleApi
             createLocationRequest();
         }
         LocationServices.FusedLocationApi.requestLocationUpdates(mClient, mLocationRequest,
-                (com.google.android.gms.location.LocationListener) this);
+               this);
 
     }
 

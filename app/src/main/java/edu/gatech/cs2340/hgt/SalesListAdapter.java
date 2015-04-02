@@ -1,8 +1,8 @@
 package edu.gatech.cs2340.hgt;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
-import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,21 +12,16 @@ import android.widget.TextView;
 
 import java.util.List;
 
-/**
- * Created by root on 3/5/15.
- */
 public class SalesListAdapter extends ArrayAdapter<Report> {
-   private Context context;
-   private List<Report> list;
+   private final Context context;
+   private final List<Report> list;
 
     /**
-     *
-     * @param context the context of parent
-     * @param resouces the resources xml fils
+     *  @param context the context of parent
      * @param list list of item within the list view
      */
-   public SalesListAdapter(Context context,int resouces, List<Report> list) {
-       super(context, resouces, list);
+   public SalesListAdapter(Context context, List<Report> list) {
+       super(context, R.layout.sale_item, list);
        this.context = context;
        this.list = list;
    }
@@ -43,7 +38,8 @@ public class SalesListAdapter extends ArrayAdapter<Report> {
         Report sale = list.get(position);
         LayoutInflater inflater = (LayoutInflater)context
                 .getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
-        View view = inflater.inflate(R.layout.sale_item, null);
+        @SuppressLint("ViewHolder")
+        View view = inflater.inflate(R.layout.sale_item, parent);
         ImageView image = (ImageView)view.findViewById(R.id.itemImage);
         image.setImageResource(R.drawable.item_image2);
         TextView name = (TextView)view.findViewById(R.id.sale_name);

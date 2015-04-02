@@ -1,9 +1,6 @@
 package edu.gatech.cs2340.hgt;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.media.Image;
-import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.view.LayoutInflater;
@@ -13,7 +10,6 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.RatingBar;
 import android.widget.TextView;
 
 import java.util.List;
@@ -24,17 +20,15 @@ import java.util.List;
  * Activities that contain this fragment must implement the
  * to handle interaction events.
  */
+@SuppressWarnings("ALL")
 public class UserDetailFragment extends Fragment {
     private TextView name;
     private ImageView profileImg;
     private TextView email;
     private TextView shortDes;
-    private Button newSaleBtn;
-    private  Button editBtn;
     private ListView interests;
     private UserDetailCallback activity;
-    private User currentUser;
-    private Button newReportBtn;
+
     public UserDetailFragment() {
         // Required empty public constructor
     }
@@ -61,11 +55,11 @@ public class UserDetailFragment extends Fragment {
         shortDes = (TextView) rootView.findViewById(R.id.friend_detail_description);
         name = (TextView) rootView.findViewById((R.id.friend_detail_name));
         interests = (ListView) rootView.findViewById(R.id.friend_detail_interest_list);
-        newSaleBtn = (Button)rootView.findViewById(R.id.user_detail_new_sale_btn);
-        editBtn = (Button)rootView.findViewById(R.id.user_detail_edit_btn);
+        Button newSaleBtn = (Button) rootView.findViewById(R.id.user_detail_new_sale_btn);
+        Button editBtn = (Button) rootView.findViewById(R.id.user_detail_edit_btn);
         interests = (ListView)rootView.findViewById(R.id.friend_detail_interest_list);
         newSaleBtn.setOnClickListener(new NewSaleBtnListener());
-        newReportBtn = (Button)rootView.findViewById(R.id.user_detail_reportBtn);
+        Button newReportBtn = (Button) rootView.findViewById(R.id.user_detail_reportBtn);
         setValues();
         newReportBtn.setOnClickListener(new ReportBtnListener());
         return rootView;
@@ -74,8 +68,8 @@ public class UserDetailFragment extends Fragment {
     private void loadInterests(String username) {
         UserDetailDB db =  new UserDetailDB(getActivity());
         List<Report> list = db.getReports(username);
-        SalesListAdapter adapter = new SalesListAdapter(getActivity(), R.layout.sale_item
-        , list);
+        SalesListAdapter adapter = new SalesListAdapter(getActivity(),
+                list);
         interests.setAdapter(adapter);
         interests.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -93,7 +87,7 @@ public class UserDetailFragment extends Fragment {
     private void setValues() {
         Bundle b = getArguments();
         UserDetailDB db = new UserDetailDB(getActivity());
-        currentUser = db.getFullDetailUser(b.getString("username"));
+        User currentUser = db.getFullDetailUser(b.getString("username"));
         name.setText(currentUser.getName());
         email.setText(currentUser.getEmail());
         shortDes.setText("not yet available");
