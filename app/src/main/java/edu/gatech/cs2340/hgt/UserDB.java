@@ -9,9 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by root on 2/10/15.
- */
+
 public class UserDB extends SQLiteOpenHelper{
 
     public UserDB(Context context) {

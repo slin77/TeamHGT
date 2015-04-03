@@ -3,11 +3,9 @@ package edu.gatech.cs2340.hgt;
 import java.util.HashMap;
 import java.util.regex.*;
 
-/**
- * Created by Qi on 2015/2/3.
- */
-public class SignUpChecker {
-    private HashMap<String, String> userdata;
+
+class SignUpChecker {
+    private final HashMap<String, String> userdata;
     public SignUpChecker() {
         this.userdata = new HashMap<>(20);
         userdata.put("Sizhe.HGT++", "123456789");

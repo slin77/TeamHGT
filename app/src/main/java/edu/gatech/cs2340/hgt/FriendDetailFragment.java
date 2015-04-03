@@ -2,8 +2,6 @@ package edu.gatech.cs2340.hgt;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.media.Image;
-import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.view.LayoutInflater;
@@ -11,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
@@ -26,7 +23,6 @@ public class FriendDetailFragment extends Fragment {
     private ImageView profileImg;
     private TextView email;
     private TextView shortDes;
-    private ListView interests;
     private RatingBar rate;
     private Button unfriendBtn;
     private RemoveFragmentable activity;
@@ -34,10 +30,6 @@ public class FriendDetailFragment extends Fragment {
         // Required empty public constructor
     }
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
 
     /**
      * to render the view from inflator
@@ -55,7 +47,7 @@ public class FriendDetailFragment extends Fragment {
         email = (TextView)rootView.findViewById(R.id.friend_detail_email);
         shortDes = (TextView) rootView.findViewById(R.id.friend_detail_description);
         name = (TextView) rootView.findViewById((R.id.friend_detail_name));
-        interests = (ListView) rootView.findViewById(R.id.friend_detail_interest_list);
+        //ListView interests = (ListView) rootView.findViewById(R.id.friend_detail_interest_list);
         rate = (RatingBar)rootView.findViewById(R.id.friend_detail_rating);
         unfriendBtn  = (Button)rootView.findViewById(R.id.friend_detail_unfriendBtn);
         setValues();
@@ -93,10 +85,6 @@ public class FriendDetailFragment extends Fragment {
         this.activity = (RemoveFragmentable)activity;
     }
 
-    @Override
-    public void onDetach() {
-        super.onDetach();
-    }
 
 
     private class UnFriendListener implements View.OnClickListener {
@@ -129,6 +117,6 @@ public class FriendDetailFragment extends Fragment {
     }
 
     public interface RemoveFragmentable {
-        public boolean returnToFriendListFragment();
+        public void returnToFriendListFragment();
     }
 }

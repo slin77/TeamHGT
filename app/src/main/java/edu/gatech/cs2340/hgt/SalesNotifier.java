@@ -1,20 +1,17 @@
 package edu.gatech.cs2340.hgt;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 
 import java.util.List;
 
-/**
- * Created by root on 3/12/15.
- */
+
 public class SalesNotifier {
     //private String username;
-    private UserDetailDB db;
-    private FriendDB friendship;
-    private User currentUser;
-    private Context context;
+    private final UserDetailDB db;
+    private final FriendDB friendship;
+    private final User currentUser;
+    private final Context context;
 
     /**
      *
@@ -32,7 +29,7 @@ public class SalesNotifier {
      * return all the item that matches all user's requirement
      * @return
      */
-    public List<Report> getMatches() {
+    List<Report> getMatches() {
             return db.getMatchReports(currentUser.getUsername());
     }
 

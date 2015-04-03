@@ -48,11 +48,6 @@
             android:label="@string/title_activity_user_home" >
         </activity>
 
-        <service
-            android:name=".SalesMatchNotificationService"
-            android:enabled="true"
-            android:exported="true" >
-        </service>
 
         <meta-data
             android:name="com.google.android.gms.version"

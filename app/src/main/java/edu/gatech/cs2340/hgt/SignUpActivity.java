@@ -3,7 +3,6 @@ package edu.gatech.cs2340.hgt;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -18,9 +17,7 @@ public class SignUpActivity extends ActionBarActivity {
     private EditText passwordRepeatText;
     private EditText emailText;
     private TextView signUpStatus;
-    private Button submitBtn;
     private UserService signUpchecker;
-    private Button cancelBtn;
 
     /**
      *
@@ -36,10 +33,10 @@ public class SignUpActivity extends ActionBarActivity {
         passwordRepeatText = (EditText)findViewById((R.id.signup_password_repeat));
         emailText = (EditText)findViewById(R.id.signup_email);
         signUpStatus = (TextView)findViewById(R.id.signup_status);
-        submitBtn = (Button)findViewById(R.id.signup_submit);
+        Button submitBtn = (Button) findViewById(R.id.signup_submit);
         submitBtn.setOnClickListener(new SubmitListener());
         signUpchecker = new UserService(this.getApplicationContext());
-        cancelBtn = (Button)findViewById(R.id.signup_cancel);
+        Button cancelBtn = (Button) findViewById(R.id.signup_cancel);
         cancelBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -65,19 +62,14 @@ public class SignUpActivity extends ActionBarActivity {
 
             if (name.isEmpty()) {
                 signUpStatus.setText("name can not be empty");
-                return;
             } else if (username.isEmpty()) {
                 signUpStatus.setText("username can not be empty");
-                return;
             } else if (pw.isEmpty()) {
                 signUpStatus.setText("password can not be empty");
-                return;
             } else if (pwRepeat.isEmpty()) {
                 signUpStatus.setText("please Repeat your password");
-                return;
             } else if (email.isEmpty()) {
                 signUpStatus.setText("email can not be empty");
-                return;
             } else {
                 if (signUpchecker.isUsernameExist(username)) {
                     signUpStatus.setText("username already exist");
@@ -88,7 +80,7 @@ public class SignUpActivity extends ActionBarActivity {
                 } else if (!signUpchecker.checkPasswordFormat(pw)) {
                     signUpStatus.setText("password format was not right");
                     return;
-                } else if (!signUpchecker.checkPasswordMatch(pw, pwRepeat)) {
+                } else if (!UserService.checkPasswordMatch(pw, pwRepeat)) {
                     signUpStatus.setText("passwords do not match");
                     return;
                 } else if (!signUpchecker.checkEmailFormat(email)) {
@@ -103,7 +95,6 @@ public class SignUpActivity extends ActionBarActivity {
                 }
 
                 signUpStatus.setText("some problem occurs");
-                return;
             }
 
 

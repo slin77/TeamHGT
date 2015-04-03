@@ -1,17 +1,28 @@
 package edu.gatech.cs2340.hgt;
 
+import android.test.ActivityInstrumentationTestCase2;
+
 import junit.framework.TestCase;
 
 /**
  * Created by Bin Cao on 3/29/2015.
  */
-public class checkPasswordLengthTest extends TestCase {
+public class checkPasswordLengthTest extends ActivityInstrumentationTestCase2<LoginActivity> {
+
     public void testNullPassword() {
+
         boolean testNullCondition = UserService.checkPasswordLength(null);
         assertFalse(testNullCondition);
+
+    }
+
+    public checkPasswordLengthTest() {
+        super(LoginActivity.class);
     }
 
     public void testValidPassword() {
+        boolean t6 = UserService.checkPasswordLength("");
+        assertFalse(t6);
         boolean t1 = UserService.checkPasswordLength("12345678");
         assertTrue(t1);
         boolean t2 = UserService.checkPasswordLength("1234567891234567");

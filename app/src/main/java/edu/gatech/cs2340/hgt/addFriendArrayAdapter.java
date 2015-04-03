@@ -1,5 +1,6 @@
 package edu.gatech.cs2340.hgt;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -11,22 +12,17 @@ import android.widget.TextView;
 
 import java.util.List;
 
-/**
- * Created by root on 2/18/15.
- */
 public class addFriendArrayAdapter extends ArrayAdapter<User>{
-        private Context context;
-        private List<User> allUsers;
-        private String loggedInName;
+        private final Context context;
+        private final List<User> allUsers;
+        private final String loggedInName;
 
     /**
-     *
-     * @param context
-     * @param resource
+     *  @param context
      * @param objects
      */
-    public addFriendArrayAdapter(Context context, int resource, List<User> objects) {
-        super(context, resource, objects);
+    public addFriendArrayAdapter(Context context, List<User> objects) {
+        super(context, R.layout.add_friend_listitem, objects);
         this.context = context;
         this.allUsers = objects;
         this.loggedInName = context
@@ -49,7 +45,7 @@ public class addFriendArrayAdapter extends ArrayAdapter<User>{
                 .getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
         FriendDB db = new FriendDB(context.getApplicationContext());
 
-        View view = inflater.inflate(R.layout.add_friend_listitem, null);
+        @SuppressLint("ViewHolder") View view = inflater.inflate(R.layout.add_friend_listitem, parent);
         ImageView image = (ImageView) view.findViewById(R.id.afFriendImage);
         image.setImageResource(curUser.getImageResource());
         TextView text = (TextView) view.findViewById(R.id.afFriendName);

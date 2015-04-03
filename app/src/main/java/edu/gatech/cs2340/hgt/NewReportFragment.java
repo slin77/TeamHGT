@@ -28,15 +28,6 @@ import com.google.android.gms.maps.model.LatLng;
 
 public class NewReportFragment extends Fragment implements OnMapReadyCallback {
 
-    private static final double
-    SEATTLE_LNG =-122.33207,
-    SYDNEY_LAT = -33.867487,
-    SYDNEY_LNG = 151.20699,
-    NEWYORK_LAT = 40.714353,
-    NEWYORK_LNG = -74.005973;
-
-    private Button submitBtn;
-    private Button cancelBtn;
     private EditText itemName;
     private EditText price;
     private NewReportCallBack activity;
@@ -48,34 +39,27 @@ public class NewReportFragment extends Fragment implements OnMapReadyCallback {
   //  private GoogleMap mMap;
   //  private MapView mMapView;
     private Menu menu;
-    private Button goLocationBtn;
-
 
 
     public NewReportFragment() {
         // Required empty public constructor
     }
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
     /**
      *
-     * @param inflater
-     * @param container
-     * @param savedInstanceState
-     * @return
+     * @param inflater layout inflater
+     * @param container group container
+     * @param savedInstanceState the saved state
+     * @return the view on demand
      */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_new_report, container, false);
-        submitBtn = (Button) rootView.findViewById(R.id.new_report_submitBtn);
-        cancelBtn = (Button)rootView.findViewById(R.id.new_report_cancelBtn);
-        goLocationBtn = (Button)rootView.findViewById(R.id.new_report_location);
+        Button submitBtn = (Button) rootView.findViewById(R.id.new_report_submitBtn);
+        Button cancelBtn = (Button) rootView.findViewById(R.id.new_report_cancelBtn);
+        Button goLocationBtn = (Button) rootView.findViewById(R.id.new_report_location);
         itemName = (EditText)rootView.findViewById(R.id.new_report_item_name);
         price = (EditText)rootView.findViewById(R.id.new_report_price);
         //mMapView = (MapView)rootView.findViewById(R.id.map);
@@ -138,10 +122,10 @@ public class NewReportFragment extends Fragment implements OnMapReadyCallback {
 
     /**
      * add new report to dataBase
-     * @param itemName
-     * @param price
-     * @param location
-     * @return
+     * @param itemName name of the item
+     * @param price the price of the item
+     * @param location the location of the item
+     * @return boolean true of false
      */
     private boolean addNewReport(String itemName, String price, String location) {
         return activity.addNewReport(itemName, price, location);
@@ -153,7 +137,7 @@ public class NewReportFragment extends Fragment implements OnMapReadyCallback {
 
     /**
      * the helper method for creating a alert box to display a message
-     * @param s
+     * @param s the string which needed to be displayed
      */
     private void displayAlert(String s) {
         AlertDialog.Builder builder = new AlertDialog.Builder((Activity)activity);
@@ -202,7 +186,7 @@ public class NewReportFragment extends Fragment implements OnMapReadyCallback {
 //    }
 
     public interface NewReportCallBack {
-        public boolean returnToUserHomeActivity();
+        public void returnToUserHomeActivity();
         public boolean addNewReport(String itemName, String price, String location);
         public boolean addNewReport(String itemName, String price, String location, double lat, double lgn);
     }

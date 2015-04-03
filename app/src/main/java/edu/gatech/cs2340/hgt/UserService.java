@@ -65,8 +65,12 @@ public class UserService {
      * @param username
      * @return
      */
-    private boolean checkUsernameLength(String username) {
-          return username.length() >= 8 && username.length() <= 16;
+    private static boolean checkUsernameLength(String username) {
+        if (username.length() >= 8 && username.length() <= 16) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -119,8 +123,15 @@ public class UserService {
      * @param password
      * @return
      */
-    public boolean checkPasswordLength(String password) {
-       return checkUsernameLength(password);
+    public static boolean checkPasswordLength(String password) {
+        if (password == null) {
+            return false;
+        }
+        if(password.length() >= 8 && password.length() <= 16) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -179,9 +190,23 @@ public class UserService {
      * @param input
      * @return
      */
-    public boolean hasCharHasNumber(String input) {
-        return false;
+    public static boolean hasCharHasNumber(String input){
+    Boolean first = false;
+    Boolean second = false;
+    for(int i=0; i<input.length(); i++)
+    {
+        if(Character.isLetter(input.charAt(i)))
+        {
+            first = true;
+        }
+        if(Character.isDigit(input.charAt(i)))
+        {
+            second = true;
+        }
+
     }
+    return first && second;
+}
 
 
 

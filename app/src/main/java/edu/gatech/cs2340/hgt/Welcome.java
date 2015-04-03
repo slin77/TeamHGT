@@ -7,18 +7,15 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
 
 /**
  *
  */
 public class Welcome extends ActionBarActivity {
-   static Context APP_CONTEXT;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        APP_CONTEXT = getApplicationContext();//this is the context of the whole application
+        //Context APP_CONTEXT = getApplicationContext();
         setContentView(R.layout.activity_welcome);
         Thread logoTimer = new Thread() {
             public void run() {
@@ -53,10 +50,6 @@ public class Welcome extends ActionBarActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         try {
-            String result = data.getStringExtra("resultName");
-            if (!result.isEmpty()) {
-                //welcomeBtn.setText(result);
-            }
             super.onActivityResult(requestCode, resultCode, data);
         } catch (NullPointerException e) {
             System.out.println(e.getMessage());

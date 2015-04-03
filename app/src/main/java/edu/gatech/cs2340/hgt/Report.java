@@ -1,15 +1,13 @@
 package edu.gatech.cs2340.hgt;
 
-/**
- * Created by root on 3/12/15.
- */
+
 public class Report {
-    String itemName;
-    String price;
-    String location;
-    String reporter;
-    double lat = 0;
-    double lgn = 0;
+    private String itemName;
+    private String price;
+    private String location;
+    private String reporter;
+    private double lat = 0;
+    private double lgn = 0;
 
     public Report(String price, String location, String itemName, String reporter) {
         this.price = price;
@@ -82,11 +80,8 @@ public class Report {
 
         Report report = (Report) o;
 
-        if (!location.equals(report.location)) return false;
-        if (!itemName.equals(report.itemName)) return false;
-        if (!price.equals(report.price)) return false;
+        return location.equals(report.location) && itemName.equals(report.itemName) && price.equals(report.price);
 
-        return true;
     }
 
     @Override
