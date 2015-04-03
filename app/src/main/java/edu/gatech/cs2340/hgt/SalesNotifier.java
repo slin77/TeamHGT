@@ -27,7 +27,7 @@ public class SalesNotifier {
 
     /**
      * return all the item that matches all user's requirement
-     *
+     * @return void
      */
     List<Report> getMatches() {
             return db.getMatchReports(currentUser.getUsername());
