@@ -52,6 +52,11 @@ public class UserDetailDB extends SQLiteOpenHelper {
                 "lgn REAL)");
     }
 
+    /**
+     * get full matches of the items of a certain user
+     * @param username
+     * @return
+     */
     public List<Report> getMatchReports(String username) {
         SQLiteDatabase db = getReadableDatabase();
 //        Cursor cursor = db.execSQL("SELECT item_name, price, location, reporter" +
@@ -76,6 +81,10 @@ public class UserDetailDB extends SQLiteOpenHelper {
         return reports;
     }
 
+    /**
+       call this method whenever the db is opened, so we can apply updates on schema
+     * @param db
+     */
     @Override
     public void onOpen(SQLiteDatabase db) {
         super.onOpen(db);
@@ -83,7 +92,7 @@ public class UserDetailDB extends SQLiteOpenHelper {
     }
 
     /**
-     *
+     * need future implements
      * @param db
      * @param oldVersion
      * @param newVersion
@@ -93,6 +102,14 @@ public class UserDetailDB extends SQLiteOpenHelper {
         //not yes implement
     }
 
+    /**
+     * insert a new user Report
+     * @param itemName
+     * @param price
+     * @param location
+     * @param username
+     * @return
+     */
     public boolean insertNewReport(String itemName, String price, String location, String username) {
         SQLiteDatabase db =  getWritableDatabase();
         ContentValues cv = new ContentValues();
@@ -106,6 +123,16 @@ public class UserDetailDB extends SQLiteOpenHelper {
         return ret != 0;
     }
 
+    /**
+     * insert new Report
+     * @param itemName
+     * @param price
+     * @param location
+     * @param username
+     * @param lat
+     * @param lgn
+     * @return
+     */
     public boolean insertNewReport(String itemName, String price, String location, String username,
                                    double lat, double lgn) {
         SQLiteDatabase db =  getWritableDatabase();
@@ -120,6 +147,11 @@ public class UserDetailDB extends SQLiteOpenHelper {
         return ret != 0;
     }
 
+    /**
+     * get reports for a certain username
+     * @param username
+     * @return
+     */
     public List<Report> getReports(String username) {
         SQLiteDatabase db  = getReadableDatabase();
         Cursor cursor = db.query("reports", new String[] {},"reporter=?"
@@ -139,7 +171,11 @@ public class UserDetailDB extends SQLiteOpenHelper {
         return reports;
     }
 
-
+    /**
+     * get Sales of a certain Username
+     * @param username
+     * @return
+     */
     public List<Sale> getSales(String username) {
         SQLiteDatabase db  = getReadableDatabase();
         //String selection = "username="+username;
@@ -158,6 +194,14 @@ public class UserDetailDB extends SQLiteOpenHelper {
         return sales;
     }
 
+    /**
+     * insert a new Sale into dataBase
+     * @param username
+     * @param itemName
+     * @param thresholdPrice
+     * @param timestamp
+     * @return
+     */
     public boolean insertNewSale(String username, String itemName, String thresholdPrice, String timestamp) {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues cv = new ContentValues();
@@ -176,7 +220,11 @@ public class UserDetailDB extends SQLiteOpenHelper {
      * @return
      */
 
-
+    /**
+     * get whole username information of a user
+     * @param username
+     * @return
+     */
     public User getFullDetailUser(String username) {
         UserDB userDB = new UserDB(context);
         if (!userDB.isUserExist(username)) {
@@ -237,6 +285,11 @@ public class UserDetailDB extends SQLiteOpenHelper {
         return re;
     }
 
+    /**
+     * get all interests of the user
+     * @param username
+     * @return
+     */
     public String getInterest(String username) {
         return getFieldByUsername(username, INTEREST_COL);
     }
