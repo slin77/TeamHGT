@@ -45,6 +45,10 @@ public class UserDB extends SQLiteOpenHelper{
         return pw;
     }
 
+    /**
+     * get the full user lists
+     * @return
+     */
     public List<User> getAllUsers() {
         SQLiteDatabase db = getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM 'users'", null);
@@ -59,6 +63,12 @@ public class UserDB extends SQLiteOpenHelper{
         return list;
     }
 
+    /**
+     * helper to get certain fields by username
+     * @param username
+     * @param fieldName
+     * @return
+     */
    private String getFieldByUsername(String username, String fieldName) {
 
        SQLiteDatabase db  = getReadableDatabase();
@@ -88,6 +98,14 @@ public class UserDB extends SQLiteOpenHelper{
         return pw != null;
     }
 
+    /**
+     * insert new user
+     * @param name
+     * @param username
+     * @param password
+     * @param email
+     * @return
+     */
     public boolean insertUser(String name, String username, String password, String email) {
         if (isUserExist(username)) {
             return false;
@@ -103,6 +121,11 @@ public class UserDB extends SQLiteOpenHelper{
         return ret != -1;
     }
 
+    /**
+     * delete the user from dataBase
+     * @param username
+     * @return
+     */
     public boolean deleteUser(String username) {
         SQLiteDatabase db = this.getWritableDatabase();
         int colNum = db.delete("users", "username=?", new String[] {username});
