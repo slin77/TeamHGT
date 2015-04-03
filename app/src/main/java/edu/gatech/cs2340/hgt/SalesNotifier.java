@@ -15,8 +15,8 @@ public class SalesNotifier {
 
     /**
      *
-     * @param username
-     * @param context
+     * @param username username
+     * @param context context
      */
     public SalesNotifier(String username, Context context) {
         db = new UserDetailDB(context);
@@ -27,7 +27,7 @@ public class SalesNotifier {
 
     /**
      * return all the item that matches all user's requirement
-     * @return
+     *
      */
     List<Report> getMatches() {
             return db.getMatchReports(currentUser.getUsername());
@@ -58,7 +58,7 @@ public class SalesNotifier {
 
     /**
      * create a dialogbox for all matches of the specific item
-     * @param itemName
+     * @param itemName item name
      */
     public void notifyMatch(String itemName) {
         List<Report>reports = getMatches();

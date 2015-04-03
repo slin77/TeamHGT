@@ -28,10 +28,10 @@ public class SalesListAdapter extends ArrayAdapter<Report> {
 
     /**
      * inflate the view for each sale item
-     * @param position
-     * @param convertView
-     * @param parent
-     * @return
+     * @param position the position of sale
+     * @param convertView convert view
+     * @param parent parent
+     * @return view
      */
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {

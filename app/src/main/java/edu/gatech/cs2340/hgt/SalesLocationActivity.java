@@ -44,7 +44,7 @@ public class SalesLocationActivity extends FragmentActivity implements GoogleApi
 
     /**
      * create the view and initiate all services
-     * @param savedInstanceState
+     * @param savedInstanceState the saved instance state
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -121,9 +121,9 @@ public class SalesLocationActivity extends FragmentActivity implements GoogleApi
 
     /**
      * move camera to the location
-     * @param lat
-     * @param lng
-     * @param zoom
+     * @param lat latitude
+     * @param lng longitude
+     * @param zoom zoom
      */
     private void goToLocation(double lat, double lng, float zoom) {
         LatLng ll = new LatLng(lat, lng);
@@ -137,7 +137,7 @@ public class SalesLocationActivity extends FragmentActivity implements GoogleApi
 
     /**
      * hide the keyboard, and get the geolocation of the location name
-     * @param v
+     * @param v view
      * @throws IOException
      */
     public void geoLocate(View v) throws IOException {
@@ -190,7 +190,7 @@ public class SalesLocationActivity extends FragmentActivity implements GoogleApi
 
     /**
      * check if the GooglePlayService is Okay
-     * @return
+     * @return boolean true is success false otherwise
      */
     boolean serviceOK() {
         int isAvailable = GooglePlayServicesUtil.isGooglePlayServicesAvailable(this);
