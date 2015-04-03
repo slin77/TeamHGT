@@ -30,22 +30,28 @@ public class checkPasswordMatchTest extends ActivityInstrumentationTestCase2<Sig
         boolean test2 = UserService.checkPasswordMatch("password123", "ppassword123");
         assertFalse(test2);
 
-        // unmatched letter (case sensitive)
-        boolean test3 = UserService.checkPasswordMatch("123password", "123Password");
+        boolean test3 = UserService.checkPasswordMatch("ppassword123", "password123");
         assertFalse(test3);
 
-        // unmatched letter
-        boolean test4 = UserService.checkPasswordMatch("123password", "123passward");
+        // unmatched letter (case sensitive)
+        boolean test4 = UserService.checkPasswordMatch("123password", "123Password");
         assertFalse(test4);
+
+        // unmatched letter
+        boolean test5 = UserService.checkPasswordMatch("123password", "123passward");
+        assertFalse(test5);
     }
 
     public void testMatchedPassword() {
 
-        boolean test5 = UserService.checkPasswordMatch("password123", "password123");
-        assertTrue(test5);
-
-        boolean test6 = UserService.checkPasswordMatch("1234password", "1234password");
+        boolean test6 = UserService.checkPasswordMatch("password123", "password123");
         assertTrue(test6);
+
+        boolean test7 = UserService.checkPasswordMatch("1234password", "1234password");
+        assertTrue(test7);
+
+        boolean test8 = UserService.checkPasswordMatch("pass12word", "pass12word");
+        assertTrue(test8);
     }
 
 }
