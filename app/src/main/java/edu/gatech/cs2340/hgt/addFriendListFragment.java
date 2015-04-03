@@ -30,7 +30,7 @@ public class addFriendListFragment extends ListFragment {
 
     /**
      *
-     * @param savedInstanceState
+     * @param savedInstanceState a variable that keep track the state
      */
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -40,10 +40,10 @@ public class addFriendListFragment extends ListFragment {
 
     /**
      *
-     * @param inflater
-     * @param container
-     * @param savedInstanceState
-     * @return
+     * @param inflater the layout component inflate the screen
+     * @param container the container in the layout that contain all the boxes
+     * @param savedInstanceState a variable keep tract the instance
+     * @return the new view
      */
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -58,7 +58,7 @@ public class addFriendListFragment extends ListFragment {
 
     /**
      *
-     * @param activity
+     * @param activity the activity pass on
      */
     @Override
     public void onAttach(Activity activity) {
@@ -97,10 +97,10 @@ public class addFriendListFragment extends ListFragment {
 
     /**
      *
-     * @param l
-     * @param v
-     * @param position
-     * @param id
+     * @param l the list view
+     * @param v the previous view
+     * @param position the position of the box
+     * @param id the id of the previous object
      */
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {

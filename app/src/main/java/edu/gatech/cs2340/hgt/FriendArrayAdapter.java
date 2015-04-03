@@ -19,9 +19,9 @@ public class FriendArrayAdapter extends ArrayAdapter<User> {
 
     /**
      *
-     * @param context
-     * @param resource
-     * @param objects
+     * @param context the context that display to the screen
+     * @param resource the passed on information
+     * @param objects the object that contain a list
      */
     public FriendArrayAdapter(Context context, int resource, List<User> objects) {
         super(context, resource, objects);
@@ -31,10 +31,10 @@ public class FriendArrayAdapter extends ArrayAdapter<User> {
 
     /**
      *
-     * @param position
-     * @param convertView
-     * @param parent
-     * @return
+     * @param position previous position
+     * @param convertView convertview that was passed on as a variable
+     * @param parent the information passsed on
+     * @return the new view
      */
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {

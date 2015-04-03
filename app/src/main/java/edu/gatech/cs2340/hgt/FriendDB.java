@@ -18,7 +18,7 @@ public class FriendDB extends SQLiteOpenHelper {
     private final Context context;
 
     /**
-     * @param context
+     * @param context the context that will include on the interface
      */
     public FriendDB(Context context) {
         super(context, "friendship", null, 1);
@@ -26,7 +26,7 @@ public class FriendDB extends SQLiteOpenHelper {
     }
 
     /**
-     * @param db
+     * @param db database
      */
     @Override
     public void onCreate(SQLiteDatabase db) {
@@ -44,9 +44,9 @@ public class FriendDB extends SQLiteOpenHelper {
     }
 
     /**
-     * @param db
-     * @param oldVersion
-     * @param newVersion
+     * @param db the database
+     * @param oldVersion the version before upgrade
+     * @param newVersion the version after upgrade
      */
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
@@ -54,9 +54,9 @@ public class FriendDB extends SQLiteOpenHelper {
     }
 
     /**
-     * @param currentUser
-     * @param targetUser
-     * @return
+     * @param currentUser the current user
+     * @param targetUser the target user
+     * @return return a boolean to present if it is successful
      */
     public boolean addNewFriendship(String currentUser, String targetUser) {
 
@@ -77,9 +77,9 @@ public class FriendDB extends SQLiteOpenHelper {
     }
 
     /**
-     * @param currentUser
-     * @param targetUser
-     * @return
+     * @param currentUser the current user
+     * @param targetUser the target user
+     * @return the boolean that show if the action is successful
      */
     public boolean areFriend(String currentUser, String targetUser) {
         SQLiteDatabase db = getReadableDatabase();
@@ -95,8 +95,8 @@ public class FriendDB extends SQLiteOpenHelper {
     }
 
     /**
-     * @param username
-     * @return
+     * @param username username that was passed on
+     * @return the string list
      */
     private String[] getFriends(String username) {
         //System.out.println(username);
@@ -119,8 +119,8 @@ public class FriendDB extends SQLiteOpenHelper {
     }
 
     /**
-     * @param username
-     * @return
+     * @param username the username of the user
+     * @return a list to have all the friend
      */
     public List<User> getFriendList(String username) {
         String[] friends = getFriends(username);

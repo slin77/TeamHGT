@@ -33,10 +33,10 @@ public class FriendDetailFragment extends Fragment {
 
     /**
      * to render the view from inflator
-     * @param inflater
-     * @param container
-     * @param savedInstanceState
-     * @return
+     * @param inflater the layout component inflate the screen
+     * @param container the container in the layout that contain all the boxes
+     * @param savedInstanceState a variable keep tract the instance
+     * @return the view
      */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -77,7 +77,7 @@ public class FriendDetailFragment extends Fragment {
 
     /**
      * set the reference to the host activity
-     * @param activity
+     * @param activity the activity that on attach to the hosting activity.
      */
     @Override
     public void onAttach(Activity activity) {

@@ -18,8 +18,8 @@ public class addFriendArrayAdapter extends ArrayAdapter<User>{
         private final String loggedInName;
 
     /**
-     *  @param context
-     * @param objects
+     *  @param context the context in the interface that pass the info from another page
+     * @param objects the objects that use to contain a list.
      */
     public addFriendArrayAdapter(Context context, List<User> objects) {
         super(context, R.layout.add_friend_listitem, objects);
@@ -33,10 +33,10 @@ public class addFriendArrayAdapter extends ArrayAdapter<User>{
 
     /**
      *
-     * @param position
-     * @param convertView
-     * @param parent
-     * @return
+     * @param position the position of the object
+     * @param convertView convert view of the application
+     * @param parent the information that pass on from previous activity.
+     * @return the new view
      */
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
