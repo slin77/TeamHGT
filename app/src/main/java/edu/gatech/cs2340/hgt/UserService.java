@@ -1,9 +1,6 @@
 package edu.gatech.cs2340.hgt;
 
 import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
-
-import java.util.HashMap;
 
 /**
  * Created by root on 2/3/15.
@@ -15,7 +12,7 @@ import java.util.HashMap;
  */
 public class UserService {
     //private HashMap<String, String> userdata;
-    private UserDB userDB;
+    private final UserDB userDB;
 
     /**
      *
@@ -56,8 +53,7 @@ public class UserService {
      * @return
      */
     public boolean checkUsernameFormat(String username) {
-        if (username == null) return false;
-        return !username.isEmpty() && checkUsernameLength(username);
+        return username != null && !username.isEmpty() && checkUsernameLength(username);
     }
 
     /**
@@ -65,7 +61,7 @@ public class UserService {
      * @param username
      * @return
      */
-    private boolean checkUsernameLength(String username) {
+    private static boolean checkUsernameLength(String username) {
           return username.length() >= 8 && username.length() <= 16;
     }
 
@@ -88,10 +84,7 @@ public class UserService {
      * @return
      */
     public static boolean checkPasswordMatch(String pw, String pwR) {
-        if (pw == null || pwR == null) {
-            return false;
-        }
-        return pw.equals(pwR);
+        return !(pw == null || pwR == null) && pw.equals(pwR);
     }
 
     /**
@@ -119,7 +112,7 @@ public class UserService {
      * @param password
      * @return
      */
-    public boolean checkPasswordLength(String password) {
+    public static boolean checkPasswordLength(String password) {
        return checkUsernameLength(password);
     }
 
@@ -179,7 +172,7 @@ public class UserService {
      * @param input
      * @return
      */
-    public boolean hasCharHasNumber(String input) {
+    public static boolean hasCharHasNumber(String input) {
         return false;
     }
 

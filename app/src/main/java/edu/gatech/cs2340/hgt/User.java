@@ -1,8 +1,6 @@
 package edu.gatech.cs2340.hgt;
 
 
-import android.content.Context;
-
 /**
  * Created by Sizhe Lin on 2/16/15.
  */
@@ -85,10 +83,8 @@ public class User {
         User user = (User) o;
 
         if (email != null ? !email.equals(user.email) : user.email != null) return false;
-        if (name != null ? !name.equals(user.name) : user.name != null) return false;
-        if (!username.equals(user.username)) return false;
+        return !(name != null ? !name.equals(user.name) : user.name != null) && username.equals(user.username);
 
-        return true;
     }
 
     /**

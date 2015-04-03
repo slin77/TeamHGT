@@ -1,28 +1,22 @@
 package edu.gatech.cs2340.hgt;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
-import android.transition.Transition;
-import android.transition.TransitionManager;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.SurfaceHolder;
 import android.view.View;
 import android.view.ViewGroup;
-import android.os.Build;
 
 
 public class FriendsActivity extends ActionBarActivity implements FriendListFragment.Callbacks
         , addFriendListFragment.CallBack2, FriendDetailFragment.RemoveFragmentable {
     //FriendDB db;
-    String currentUser;
+    private String currentUser;
     /**
      *
      */
@@ -52,7 +46,7 @@ public class FriendsActivity extends ActionBarActivity implements FriendListFrag
 
     /**
      * create the activity and show friend list fragment
-     * @param savedInstanceState
+     * @param savedInstanceState the saved instance
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,8 +65,8 @@ public class FriendsActivity extends ActionBarActivity implements FriendListFrag
 
     /**
      *
-     * @param menu
-     * @return
+     * @param menu the menu
+     * @return boolean true of false
      */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -83,8 +77,8 @@ public class FriendsActivity extends ActionBarActivity implements FriendListFrag
 
     /**
      *
-     * @param item
-     * @return
+     * @param item the item to return
+     * @return boolean true of false
      */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -103,7 +97,7 @@ public class FriendsActivity extends ActionBarActivity implements FriendListFrag
 
     /**
      * select the user and show the fragment of the user's detail
-     * @param user
+     * @param user user logged in
      */
     @Override
     public void onItemSelected(User user) {
@@ -137,8 +131,8 @@ public class FriendsActivity extends ActionBarActivity implements FriendListFrag
 
     /**
      * put the default values is the user is not fulldetailed
-     * @param b
-     * @param fullDetailedUser
+     * @param b bundle
+     * @param fullDetailedUser user detail
      */
     private void putDefault(Bundle b, User fullDetailedUser) {
         b.putString("currentUser", currentUser);
@@ -160,9 +154,9 @@ public class FriendsActivity extends ActionBarActivity implements FriendListFrag
 
     /**
      *
-     * @param username1
-     * @param username2
-     * @return
+     * @param username1 user one who want to add friend
+     * @param username2 user two who need to be added friend with
+     * @return boolean true of false
      */
     @Override
     public boolean addFriendship(String username1, String username2) {
@@ -170,7 +164,7 @@ public class FriendsActivity extends ActionBarActivity implements FriendListFrag
         FriendDB db = new FriendDB(getApplicationContext());
         if(db.addNewFriendship(username1, username2)) {
             builder.setMessage(("You are now friend with: " + username2))
-                    .setTitle("Congradulations")
+                    .setTitle("Congratulations")
                     .create()
                     .show();
             return true;
@@ -184,9 +178,8 @@ public class FriendsActivity extends ActionBarActivity implements FriendListFrag
     }
 
     @Override
-    public boolean returnToFriendListFragment() {
+    public void returnToFriendListFragment() {
         showFriendList();
-        return true;
     }
 
     /**
@@ -200,6 +193,7 @@ public class FriendsActivity extends ActionBarActivity implements FriendListFrag
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
+            @SuppressWarnings("UnnecessaryLocalVariable")
             View rootView = inflater.inflate(R.layout.fragment_friends, container, false);
             return rootView;
         }

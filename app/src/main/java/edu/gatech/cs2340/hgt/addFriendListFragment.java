@@ -3,9 +3,9 @@ package edu.gatech.cs2340.hgt;
 
 import android.app.Activity;
 import android.app.ListFragment;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,10 +20,8 @@ import java.util.List;
  * A simple {@link Fragment} subclass.
  */
 public class addFriendListFragment extends ListFragment {
-    List<User> allUsers;
-    String curUsername;
-    FriendDB db;
-    Button returnBtn;
+    private List<User> allUsers;
+    private String curUsername;
     private CallBack2 activity;
 
     public addFriendListFragment() {
@@ -48,12 +46,12 @@ public class addFriendListFragment extends ListFragment {
      * @return
      */
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
         View view =  inflater.inflate(R.layout.fragment_add_friend_list, container, false);
-        returnBtn = (Button)view.findViewById(R.id.af_return);
+        Button returnBtn = (Button) view.findViewById(R.id.af_return);
         returnBtn.setOnClickListener(new returnBtnListener(activity));
         return view;
     }
@@ -71,10 +69,10 @@ public class addFriendListFragment extends ListFragment {
                 .getSharedPreferences("userSession", 0)
                 .getString("curUsername", null);
         this.allUsers = new UserDB(getActivity()).getAllUsers();
-        this.db = new FriendDB(activity.getApplicationContext());
+        //FriendDB db = new FriendDB(activity.getApplicationContext());
 //        returnBtn.setOnClickListener(new returnBtnListener((CallBack2)activity));
         addFriendArrayAdapter adapter = new addFriendArrayAdapter(getActivity(),
-                R.layout.add_friend_listitem, allUsers);
+                allUsers);
         setListAdapter(adapter);
 
     }
@@ -83,10 +81,10 @@ public class addFriendListFragment extends ListFragment {
      *
      */
     private class returnBtnListener implements View.OnClickListener {
-        CallBack2 acticity;
+        final CallBack2 activity;
 
-        private returnBtnListener(CallBack2 acticity) {
-            this.acticity = acticity;
+        private returnBtnListener(CallBack2 activity) {
+            this.activity = activity;
         }
 
 

@@ -1,8 +1,6 @@
 package edu.gatech.cs2340.hgt;
 
-/**
- * Created by root on 3/5/15.
- */
+
 public class Sale {
     private String username;
     private String itemName;
@@ -66,9 +64,8 @@ public class Sale {
 
         if (!itemName.equals(sale.itemName)) return false;
         if (!thresholdPrice.equals(sale.thresholdPrice)) return false;
-        if (!username.equals(sale.username)) return false;
+        return username.equals(sale.username);
 
-        return true;
     }
 
     @Override

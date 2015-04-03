@@ -5,22 +5,15 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.database.sqlite.SQLiteQueryBuilder;
-import android.widget.ArrayAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by root on 2/23/15.
- */
+
 public class UserDetailDB extends SQLiteOpenHelper {
-    Context context;
-    private final String USER_DETAIL_TABLE = "user_detail";
+    private final Context context;
     private final String SHORT_DESCRIPTION_COL = "short_description";
-    private final String GENDER_COL = "gender";
     private final String INTEREST_COL = "interest";
-    private final String MALE = "male";
     private final String FEMALE = "female";
     public UserDetailDB(Context context) {
         super(context, "user_detail", null, 1);
@@ -152,7 +145,7 @@ public class UserDetailDB extends SQLiteOpenHelper {
         //String selection = "username="+username;
         Cursor cursor = db.query("sales", new String[] {},"username=?"
                 ,new String[] {username}, null, null, null);
-        ArrayList<Sale> sales = new ArrayList<Sale>(10);
+        ArrayList<Sale> sales = new ArrayList<>(10);
         cursor.moveToFirst();
         while(cursor.moveToNext()) {
             String itemName = cursor.getString(cursor.getColumnIndex("item_name"));
@@ -197,11 +190,13 @@ public class UserDetailDB extends SQLiteOpenHelper {
             return user;
         }
         String sd = getFieldByUsername(username, SHORT_DESCRIPTION_COL);
+        String GENDER_COL = "gender";
         String gender = getFieldByUsername(username, GENDER_COL);
         String interest = getFieldByUsername(username, INTEREST_COL);
         user.setHasDetail(true);
         user.setShortDescription(sd);
         user.setInterest(interest);
+        String MALE = "male";
         if (gender.equals(MALE)) {
             user.setMale(true);
         } else {
@@ -230,6 +225,7 @@ public class UserDetailDB extends SQLiteOpenHelper {
 
         SQLiteDatabase db  = getReadableDatabase();
         //String selection = "username="+username;
+        String USER_DETAIL_TABLE = "user_detail";
         Cursor cursor = db.query(USER_DETAIL_TABLE, new String[] {},"username=?"
                 ,new String[] {username}, null, null, null);
         if (cursor.getCount() == 0 || cursor.getColumnIndex(fieldName) < 0) {
@@ -250,7 +246,7 @@ public class UserDetailDB extends SQLiteOpenHelper {
         //String selection = "username="+username;
         Cursor cursor = db.query("sales", new String[] {},"item_name=?"
                 ,new String[] {itemName}, null, null, null);
-        ArrayList<Sale> sales = new ArrayList<Sale>(10);
+        ArrayList<Sale> sales = new ArrayList<>(10);
         cursor.moveToFirst();
         while(cursor.moveToNext()) {
             String username = cursor.getString(cursor.getColumnIndex("username"));

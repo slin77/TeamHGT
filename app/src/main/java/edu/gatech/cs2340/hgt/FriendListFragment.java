@@ -1,9 +1,7 @@
 package edu.gatech.cs2340.hgt;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.ListFragment;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;

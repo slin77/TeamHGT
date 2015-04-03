@@ -10,8 +10,6 @@ import android.widget.Button;
 
 
 public class SelectActivity extends ActionBarActivity {
-    Button goSignIn;
-    Button goSignUp;
 
     /**
      *
@@ -21,8 +19,8 @@ public class SelectActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select);
-        goSignIn = (Button)findViewById(R.id.GoSignIn);
-        goSignUp = (Button)findViewById(R.id.GoSignUP);
+        Button goSignIn = (Button) findViewById(R.id.GoSignIn);
+        Button goSignUp = (Button) findViewById(R.id.GoSignUP);
 
         goSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
