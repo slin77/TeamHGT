@@ -1,6 +1,9 @@
 package edu.gatech.cs2340.hgt;
 
 import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
+
+import java.util.HashMap;
 
 /**
  * Created by root on 2/3/15.
@@ -12,7 +15,7 @@ import android.content.Context;
  */
 public class UserService {
     //private HashMap<String, String> userdata;
-    private final UserDB userDB;
+    private UserDB userDB;
 
     /**
      *
@@ -53,7 +56,8 @@ public class UserService {
      * @return
      */
     public boolean checkUsernameFormat(String username) {
-        return username != null && !username.isEmpty() && checkUsernameLength(username);
+        if (username == null) return false;
+        return !username.isEmpty() && checkUsernameLength(username);
     }
 
     /**
@@ -62,7 +66,11 @@ public class UserService {
      * @return
      */
     private static boolean checkUsernameLength(String username) {
-          return username.length() >= 8 && username.length() <= 16;
+        if (username.length() >= 8 && username.length() <= 16) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -84,7 +92,10 @@ public class UserService {
      * @return
      */
     public static boolean checkPasswordMatch(String pw, String pwR) {
-        return !(pw == null || pwR == null) && pw.equals(pwR);
+        if (pw == null || pwR == null) {
+            return false;
+        }
+        return pw.equals(pwR);
     }
 
     /**
@@ -113,7 +124,14 @@ public class UserService {
      * @return
      */
     public static boolean checkPasswordLength(String password) {
-       return checkUsernameLength(password);
+        if (password == null) {
+            return false;
+        }
+        if(password.length() >= 8 && password.length() <= 16) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -172,9 +190,23 @@ public class UserService {
      * @param input
      * @return
      */
-    public static boolean hasCharHasNumber(String input) {
-        return false;
+    public static boolean hasCharHasNumber(String input){
+    Boolean first = false;
+    Boolean second = false;
+    for(int i=0; i<input.length(); i++)
+    {
+        if(Character.isLetter(input.charAt(i)))
+        {
+            first = true;
+        }
+        if(Character.isDigit(input.charAt(i)))
+        {
+            second = true;
+        }
+
     }
+    return first && second;
+}
 
 
 
