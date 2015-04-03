@@ -39,7 +39,7 @@ public class SalesListAdapter extends ArrayAdapter<Report> {
         LayoutInflater inflater = (LayoutInflater)context
                 .getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
         @SuppressLint("ViewHolder")
-        View view = inflater.inflate(R.layout.sale_item, parent);
+        View view = inflater.inflate(R.layout.sale_item, null);
         ImageView image = (ImageView)view.findViewById(R.id.itemImage);
         image.setImageResource(R.drawable.item_image2);
         TextView name = (TextView)view.findViewById(R.id.sale_name);

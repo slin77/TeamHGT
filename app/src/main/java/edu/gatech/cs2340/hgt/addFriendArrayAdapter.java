@@ -45,7 +45,7 @@ public class addFriendArrayAdapter extends ArrayAdapter<User>{
                 .getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
         FriendDB db = new FriendDB(context.getApplicationContext());
 
-        @SuppressLint("ViewHolder") View view = inflater.inflate(R.layout.add_friend_listitem, parent);
+        @SuppressLint("ViewHolder") View view = inflater.inflate(R.layout.add_friend_listitem, null);
         ImageView image = (ImageView) view.findViewById(R.id.afFriendImage);
         image.setImageResource(curUser.getImageResource());
         TextView text = (TextView) view.findViewById(R.id.afFriendName);
