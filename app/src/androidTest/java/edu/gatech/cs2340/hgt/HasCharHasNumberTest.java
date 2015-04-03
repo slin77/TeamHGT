@@ -4,10 +4,6 @@ import junit.framework.TestCase;
 
 
 public class HasCharHasNumberTest extends TestCase {
-    public void testNull() {
-        boolean out6 = UserService.hasCharHasNumber(null);
-        assertFalse(out6);
-    }
 
     public void testValidUserName() {
         boolean out1 = UserService.hasCharHasNumber("77haha");
@@ -21,6 +17,9 @@ public class HasCharHasNumberTest extends TestCase {
     }
 
     public void testInvalidUserName() {
+        boolean out6 = UserService.hasCharHasNumber("");
+        assertFalse(out6);
+
         boolean out4 = UserService.hasCharHasNumber("georgiatech");
         assertFalse(out4);
 
