@@ -40,7 +40,7 @@ public class FriendArrayAdapter extends ArrayAdapter<User> {
     public View getView(int position, View convertView, ViewGroup parent) {
         User user = friends.get(position);
         LayoutInflater inflater = (LayoutInflater)context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
-        @SuppressLint("ViewHolder") View view = inflater.inflate(R.layout.friend_listitem, parent);
+        @SuppressLint("ViewHolder") View view = inflater.inflate(R.layout.friend_listitem, null);
         ImageView image = (ImageView)view.findViewById(R.id.ivFriendImage);
         image.setImageResource(user.getImageResource());
         TextView text = (TextView)view.findViewById(R.id.ivFriendName);
