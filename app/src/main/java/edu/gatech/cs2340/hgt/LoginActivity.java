@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import java.util.Timer;
@@ -27,6 +28,7 @@ public class LoginActivity extends ActionBarActivity {
     ProgressDialog loginDia;
     private RadioButton returnWelcome;
     private UserService loginChecker;
+    private TextView forgetPassword;
 
     /**
      *
@@ -46,7 +48,7 @@ public class LoginActivity extends ActionBarActivity {
         passwordField = (EditText) findViewById((R.id.password));
         loginBar = (ProgressBar) findViewById(R.id.loginBar);
         returnWelcome = (RadioButton)findViewById(R.id.returnWelcomeBtn);
-
+        forgetPassword = (TextView)findViewById(R.id.forgetPassword);
         returnWelcome.setVisibility(View.INVISIBLE);
 
         loginChecker = new UserService(this.getApplicationContext());
@@ -83,6 +85,20 @@ public class LoginActivity extends ActionBarActivity {
                 Intent i = new Intent(LoginActivity.this, SignUpActivity.class);
                 startActivity(i);
                 finish();
+            }
+        });
+
+        forgetPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String username = nameField.getText().toString();
+                String email;
+                if (username == null) {
+                    Toast.makeText(LoginActivity.this, "please enter your username", Toast.LENGTH_SHORT).show();
+                } else {
+                    EmailRecoverer recoverer = new EmailRecoverer(LoginActivity.this);
+                    recoverer.recover(username);
+                }
             }
         });
 
